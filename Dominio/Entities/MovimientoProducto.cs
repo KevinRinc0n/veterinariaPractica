@@ -1,6 +1,6 @@
 namespace Dominio.Entities;
 
-public class MovimientoProducto
+public class MovimientoProducto : BaseEntity
 {
     public int IdTipoMovimientoFk { get; set; }
     public TipoMovimiento TipoMovimiento { get; set; }

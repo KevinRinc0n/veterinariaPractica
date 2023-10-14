@@ -1,6 +1,6 @@
 namespace Dominio.Entities;
 
-public class Raza
+public class Raza : BaseEntity
 {
     public int IdEspecieFk { get; set; }
     public Especie Especie { get; set; }

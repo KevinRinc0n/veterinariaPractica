@@ -1,6 +1,6 @@
 namespace Dominio.Entities;
 
-public class Producto
+public class Producto : BaseEntity
 {
     public string Nombre { get; set; }
     public int Stock { get; set; }
