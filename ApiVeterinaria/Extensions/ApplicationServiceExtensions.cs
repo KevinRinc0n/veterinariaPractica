@@ -14,6 +14,6 @@ public static class ApplicationServiceExtensions
     });
     public static void AddAplicacionServices(this IServiceCollection services)
     {
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>(); 
     }
 }
