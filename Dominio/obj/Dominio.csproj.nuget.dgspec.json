@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj": {}
+    "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj": {}
   },
   "projects": {
-    "c:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj": {
+    "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "c:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj",
+        "projectPath": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj",
         "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\obj\\",
+        "outputPath": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
