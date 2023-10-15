@@ -1,5 +1,7 @@
 using System.Reflection;
 using ApiVeterinaria.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Persistencia.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
 builder.Services.AddAplicacionServices();
 builder.Services.ConfigureCors();
+builder.Services.AddJwt(builder.Configuration);
+
+builder.Services.AddDbContext<ApiVeterinariaContext>(options =>
+{
+    string connectionString = builder.Configuration.GetConnectionString("ConexMysql");
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 
 var app = builder.Build();
 
@@ -25,6 +34,8 @@ if (app.Environment.IsDevelopment())
 app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
