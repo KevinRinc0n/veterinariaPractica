@@ -2,7 +2,7 @@ using Dominio.Entities;
 
 namespace Dominio.Interfaces;
 
-public interface ITratamientoMedicamento : IGeneric<TratamientoMedicamento>
+public interface ITratamientoMedicamento : IGenericRepository<TratamientoMedicamento>
 {
     
 }

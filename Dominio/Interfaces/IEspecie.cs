@@ -2,7 +2,7 @@ using Dominio.Entities;
 
 namespace Dominio.Interfaces;
 
-public interface IEspecie : IGeneric<Especie>
+public interface IEspecie : IGenericRepository<Especie>
 {
     
 }

@@ -2,7 +2,7 @@ using Dominio.Entities;
 
 namespace Dominio.Interfaces;
 
-public interface IUser : IGeneric<User>
+public interface IUser : IGenericRepository<User>
 {
     Task<User> GetByUsernameAsync(string username);
     Task<User> GetByRefreshTokenAsync(string username);

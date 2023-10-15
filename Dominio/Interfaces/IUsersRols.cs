@@ -2,7 +2,7 @@ using Dominio.Entities;
 
 namespace Dominio.Interfaces;
 
-public interface IUsersRols : IGeneric<UsersRols>
+public interface IUsersRols : IGenericRepository<UsersRols>
 {
     
 }

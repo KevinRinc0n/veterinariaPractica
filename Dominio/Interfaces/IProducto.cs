@@ -2,7 +2,7 @@ using Dominio.Entities;
 
 namespace Dominio.Interfaces;
 
-public interface IProducto : IGeneric<Producto>
+public interface IProducto : IGenericRepository<Producto>
 {
     
 }

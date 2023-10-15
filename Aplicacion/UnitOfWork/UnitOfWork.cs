@@ -1,5 +1,4 @@
 using Aplicacion.Repository;
-using Dominio.Entities;
 using Dominio.Interfaces;
 using Persistencia.Data;
 
@@ -106,7 +105,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public IMovimientoMedicamento MovimientoMedicamentos
+    public IMovimientoMedicamento MovimientosMedicamentos
     {
         get
         {
@@ -118,7 +117,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public IMovimientoProducto MovimientoProductos
+    public IMovimientoProducto MovimientosProductos
     {
         get
         {

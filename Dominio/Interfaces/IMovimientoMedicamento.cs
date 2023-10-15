@@ -2,7 +2,7 @@ using Dominio.Entities;
 
 namespace Dominio.Interfaces;
 
-public interface IMovimientoMedicamento : IGeneric<MovimientoMedicamento>
+public interface IMovimientoMedicamento : IGenericRepository<MovimientoMedicamento>
 {
     
 }

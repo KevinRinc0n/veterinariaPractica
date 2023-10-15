@@ -20,7 +20,7 @@ public interface IUnitOfWork
     ITratamientoMedicamento TratamientoMedicamentos { get; }
     ITratamientoMedico TratamientosMedicos { get; }
     IUser Usuarios { get; }
-    IVeterinario veterinarios { get; }
+    IVeterinario Veterinarios { get; }
 
 
     Task<int> SaveAsync();
