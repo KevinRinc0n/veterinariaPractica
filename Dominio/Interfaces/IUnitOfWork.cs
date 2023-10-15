@@ -15,11 +15,11 @@ public interface IUnitOfWork
     IProveedor Proveedores { get; }
     IRaza Razas { get; }
     IRol Roles { get; }
-    IRolesUsuarios RolesUsuarios { get; }
+    IUsersRols RolesUsuarios { get; }
     ITipoMovimiento TiposMovimientos { get; }
     ITratamientoMedicamento TratamientoMedicamentos { get; }
     ITratamientoMedico TratamientosMedicos { get; }
-    IUsuario Usuarios { get; }
+    IUser Usuarios { get; }
     IVeterinario veterinarios { get; }
 
 

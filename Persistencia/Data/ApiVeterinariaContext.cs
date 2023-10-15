@@ -24,11 +24,11 @@ public class ApiVeterinariaContext : DbContext
     public DbSet<Proveedor> Proveedores { get; set; }
     public DbSet<Raza> Razas { get; set; }
     public DbSet<Rol> Roles { get; set; }
-    public DbSet<RolesUsuarios> RolesUsuarios { get; set; }
+    public DbSet<UsersRols> RolesUsuarios { get; set; }
     public DbSet<TipoMovimiento> TiposMovimientos { get; set; }
     public DbSet<TratamientoMedicamento> TratamientosMedicamentos { get; set; }
     public DbSet<TratamientoMedico> TratamientosMedicos { get; set; }
-    public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<User> Usuarios { get; set; }
     public DbSet<Veterinario> Veterinarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

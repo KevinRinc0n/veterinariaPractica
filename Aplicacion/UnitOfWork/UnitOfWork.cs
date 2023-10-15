@@ -21,11 +21,11 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IProveedor _proveedor;
     private IRaza _razas;
     private IRol _roles;
-    private IRolesUsuarios _rolesUsuarios;
+    private IUsersRols _rolesUsuarios;
     private ITipoMovimiento _tiposMovimientos;
     private ITratamientoMedicamento _tratamientosMedicamentos;
     private ITratamientoMedico _tratamientosMedicos;
-    private IUsuario _usuarios;
+    private IUser _usuarios;
     private IVeterinario _veterinarios;
 
 
@@ -190,13 +190,13 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public IRolesUsuarios RolesUsuarios
+    public IUsersRols RolesUsuarios
     {
         get
         {
             if (_rolesUsuarios == null)
             {
-                _rolesUsuarios = new RolesUsuariosRepository(_context);
+                _rolesUsuarios = new UsersRolsRepository(_context);
             }
             return _rolesUsuarios;
         }
@@ -238,13 +238,13 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
 
-    public IUsuario Usuarios
+    public IUser Usuarios
     {
         get
         {
             if (_usuarios == null)
             {
-                _usuarios = new UsuarioRepository(_context);
+                _usuarios = new UserRepository(_context);
             }
             return _usuarios;
         }
