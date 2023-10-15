@@ -8,4 +8,6 @@ public class Producto : BaseEntity
     public int IdProveedorFk { get; set; }
     public Proveedor Proveedor { get; set; }
     public ICollection<MovimientoProducto> MovimientosProductos { get; set; }
+    public ICollection<Cliente> Clientes { get; set; }
+    public ICollection<ClienteProducto> ClientesProductos { get; set; }
 }

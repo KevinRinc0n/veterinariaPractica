@@ -4,6 +4,7 @@ public interface IUnitOfWork
 {
     ICita Citas { get; }
     ICliente Clientes { get; }
+    IClientesProductos ClientesProductos { get; }
     IEspecie Especies { get; }
     ILaboratorio Laboratorios { get; }
     IMascota Mascotas { get; }

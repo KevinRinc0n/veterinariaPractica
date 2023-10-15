@@ -9,6 +9,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private readonly ApiVeterinariaContext _context;
     private ICita _citas;
     private ICliente _clientes;
+    private IClientesProductos _clientesproductos;
     private IEspecie _especies;
     private ILaboratorio _laboratorios;
     private IMascota _mascotas;
@@ -54,6 +55,18 @@ public class UnitOfWork : IUnitOfWork, IDisposable
                 _clientes = new ClienteRepository(_context);
             }
             return _clientes;
+        }
+    }
+
+    public IClientesProductos ClientesProductos
+    {
+        get
+        {
+            if (_clientesproductos == null)
+            {
+                _clientesproductos = new ClientesProductosRepository(_context);
+            }
+            return _clientesproductos;
         }
     }
 

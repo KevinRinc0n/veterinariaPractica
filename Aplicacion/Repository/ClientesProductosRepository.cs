@@ -4,12 +4,12 @@ using Persistencia.Data;
 
 namespace Aplicacion.Repository;
 
-public class UsersRolsRepository : GenericRepository<UserRol>, IUsersRols
+public class ClientesProductosRepository : GenericRepository<ClienteProducto>, IClientesProductos
 {
     private readonly ApiVeterinariaContext _context;
 
-    public UsersRolsRepository(ApiVeterinariaContext context) : base(context)
+    public ClientesProductosRepository(ApiVeterinariaContext context) : base(context)
     {
         _context = context;
-    }
+    } 
 }

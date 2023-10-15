@@ -2,7 +2,7 @@ namespace Dominio.Entities;
 
 public class RefreshToken
 {
-    public int UserIdFk { get; set; }
+    public int IdUserFk { get; set; }
     public User User { get; set; }
     public string Token { get; set; }
     public DateTime Expires { get; set; }

@@ -13,6 +13,7 @@ public class ApiVeterinariaContext : DbContext
 
     public DbSet<Cita> Citas { get; set; }
     public DbSet<Cliente> Clientes { get; set; }
+    public DbSet<ClienteProducto> ClientesProductos { get; set; }
     public DbSet<Especie> Especies { get; set; }
     public DbSet<Laboratorio> Laboratorios { get; set; }
     public DbSet<Mascota> Mascotas { get; set; }
@@ -24,7 +25,7 @@ public class ApiVeterinariaContext : DbContext
     public DbSet<Proveedor> Proveedores { get; set; }
     public DbSet<Raza> Razas { get; set; }
     public DbSet<Rol> Roles { get; set; }
-    public DbSet<UsersRols> RolesUsuarios { get; set; }
+    public DbSet<UserRol> RolesUsuarios { get; set; }
     public DbSet<TipoMovimiento> TiposMovimientos { get; set; }
     public DbSet<TratamientoMedicamento> TratamientosMedicamentos { get; set; }
     public DbSet<TratamientoMedico> TratamientosMedicos { get; set; }
