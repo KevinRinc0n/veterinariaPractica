@@ -1,3 +1,7 @@
+using Dominio.Entities;
+using Dominio.Interfaces;
+using Persistencia.Data;
+
 namespace Aplicacion.Repository;
 
 public class ProductoRepository : GenericRepository<Producto>, IProducto

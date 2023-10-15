@@ -2,7 +2,7 @@ using Dominio.Entities;
 
 namespace Dominio.Interfaces;
 
-public interface ICIta : IGeneric<Cita>
+public interface ICita : IGeneric<Cita>
 {
     
 }

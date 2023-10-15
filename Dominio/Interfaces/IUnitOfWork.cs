@@ -2,7 +2,7 @@ namespace Dominio.Interfaces;
 
 public interface IUnitOfWork
 {
-    ICIta Citas { get; }
+    ICita Citas { get; }
     ICliente Clientes { get; }
     IEspecie Especies { get; }
     ILaboratorio Laboratorios { get; }
