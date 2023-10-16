@@ -43,5 +43,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasMany(p => p.RefreshTokens)
         .WithOne(p => p.User)
         .HasForeignKey(p => p.IdUserFk);
+
+        builder.HasData(
+            new User { Id = 1, Nombre = "Kevin", Email = "kevin@gmail.com", Contraseña = "1234" },
+            new User { Id = 2, Nombre = "user", Email = "user@gmail.com", Contraseña = "1234"  }
+        );
     }
 }

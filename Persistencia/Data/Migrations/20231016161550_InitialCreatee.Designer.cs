@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistencia.Data;
 
@@ -10,9 +11,11 @@ using Persistencia.Data;
 namespace Persistencia.Data.Migrations
 {
     [DbContext(typeof(ApiVeterinariaContext))]
-    partial class ApiVeterinariaContextModelSnapshot : ModelSnapshot
+    [Migration("20231016161550_InitialCreatee")]
+    partial class InitialCreatee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -501,22 +504,6 @@ namespace Persistencia.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("user", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Contraseña = "1234",
-                            Email = "kevin@gmail.com",
-                            Nombre = "Kevin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Contraseña = "1234",
-                            Email = "user@gmail.com",
-                            Nombre = "user"
-                        });
                 });
 
             modelBuilder.Entity("Dominio.Entities.UserRol", b =>

@@ -18,6 +18,10 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
         .IsRequired()
         .HasMaxLength(50);
 
+        builder.Property(c => c.Email)
+        .IsRequired()
+        .HasMaxLength(50);
+
          builder.HasMany(p => p.Productos)
             .WithMany(r => r.Clientes)
             .UsingEntity<ClienteProducto>(

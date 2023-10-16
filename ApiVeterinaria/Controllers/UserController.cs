@@ -2,7 +2,6 @@ using Dominio.Entities;
 using AutoMapper;
 using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using ApiVeterinaria.Dtos;
 using ApiVeterinaria.Services;
 using ApiFarmacia.Helpers;
@@ -12,91 +11,92 @@ namespace ApiVeterinaria.Controllers;
 
 public class UserController : BaseApiController
 {
-    private IUserService _userService;
-    private IUnitOfWork unitofwork;
-    private readonly IMapper mapper;
+    private readonly IUserService _userService;
+    // private IUnitOfWork unitofwork;
+    // private readonly IMapper mapper;
 
-    public UserController(IUnitOfWork unitOfWork, IMapper mapper, IUserService userService)
+    public UserController( IUserService userService)
     {
-        this.unitofwork = unitOfWork;
-        this.mapper = mapper;
+        
         _userService = userService;
     } 
+//     this.unitofwork = unitOfWork;
+//         this.mapper = mapper;
+// IUnitOfWork unitOfWork, IMapper mapper,
+    // [HttpGet]
+    // // [Authorize]    
+    // [ProducesResponseType(StatusCodes.Status200OK)]
+    // [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    [HttpGet]
-    [Authorize]    
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    // public async Task<ActionResult<Pager<User>>> Get([FromQuery]Params usuarioParams)
+    // {
+    //     var usuario = await unitofwork.Usuarios.GetAllAsync(usuarioParams.PageIndex,usuarioParams.PageSize, usuarioParams.Search);
+    //     var listaUsuarios = mapper.Map<List<User>>(usuario.registros);
+    //     return new Pager<User>(listaUsuarios, usuario.totalRegistros,usuarioParams.PageIndex,usuarioParams.PageSize,usuarioParams.Search);
+    // }
 
-    public async Task<ActionResult<Pager<User>>> Get([FromQuery]Params usuarioParams)
-    {
-        var usuario = await unitofwork.Usuarios.GetAllAsync(usuarioParams.PageIndex,usuarioParams.PageSize, usuarioParams.Search);
-        var listaUsuarios = mapper.Map<List<User>>(usuario.registros);
-        return new Pager<User>(listaUsuarios, usuario.totalRegistros,usuarioParams.PageIndex,usuarioParams.PageSize,usuarioParams.Search);
-    }
+    // [HttpGet("{id}")]
+    // // [Authorize]    
+    // [ProducesResponseType(StatusCodes.Status200OK)]
+    // [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    // [ProducesResponseType(StatusCodes.Status404NotFound)]
+    // public async Task<ActionResult<User>> Get(int id)
+    // {
+    //     var usuario = await unitofwork.Usuarios.GetByIdAsync(id);
+    //     return mapper.Map<User>(usuario);
+    // }
 
-    [HttpGet("{id}")]
-    [Authorize]    
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<User>> Get(int id)
-    {
-        var usuario = await unitofwork.Usuarios.GetByIdAsync(id);
-        return mapper.Map<User>(usuario);
-    }
+    // [HttpPost]
+    // // [Authorize]    
+    // [ProducesResponseType(StatusCodes.Status200OK)]
+    // [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    // public async Task<ActionResult<User>> Post(User usuarioDto)
+    // {
+    //     var usuario = this.mapper.Map<User>(usuarioDto);
+    //     this.unitofwork.Usuarios.Add(usuario);
+    //     await unitofwork.SaveAsync();
+    //     if (usuario == null){
+    //         return BadRequest();
+    //     }
+    //     usuarioDto.Id = usuario.Id;
+    //     return CreatedAtAction(nameof(Post), new { id = usuarioDto.Id }, usuarioDto);
+    // }
 
-    [HttpPost]
-    [Authorize]    
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<User>> Post(User usuarioDto)
-    {
-        var usuario = this.mapper.Map<User>(usuarioDto);
-        this.unitofwork.Usuarios.Add(usuario);
-        await unitofwork.SaveAsync();
-        if (usuario == null){
-            return BadRequest();
-        }
-        usuarioDto.Id = usuario.Id;
-        return CreatedAtAction(nameof(Post), new { id = usuarioDto.Id }, usuarioDto);
-    }
+    // [HttpPut]
+    // // [Authorize]    
+    // [ProducesResponseType(StatusCodes.Status200OK)]
+    // [ProducesResponseType(StatusCodes.Status404NotFound)]
+    // [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    [HttpPut]
-    [Authorize]    
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    // public async Task<ActionResult<User>> Put (int id, [FromBody]User usuarioDto)
+    // {
+    //     if(usuarioDto == null)
+    //         return NotFound();
 
-    public async Task<ActionResult<User>> Put (int id, [FromBody]User usuarioDto)
-    {
-        if(usuarioDto == null)
-            return NotFound();
+    //     var usuario = this.mapper.Map<User>(usuarioDto);
+    //     unitofwork.Usuarios.Update(usuario);
+    //     await unitofwork.SaveAsync();
+    //     return usuarioDto;     
+    // }
 
-        var usuario = this.mapper.Map<User>(usuarioDto);
-        unitofwork.Usuarios.Update(usuario);
-        await unitofwork.SaveAsync();
-        return usuarioDto;     
-    }
+    // [HttpDelete("{id}")]
+    // // [Authorize]    
+    // [ProducesResponseType(StatusCodes.Status404NotFound)]
+    // [ProducesResponseType(StatusCodes.Status204NoContent)]
 
-    [HttpDelete("{id}")]
-    [Authorize]    
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    // public async Task<ActionResult> Delete (int id)
+    // {
+    //     var usuario = await unitofwork.Usuarios.GetByIdAsync(id);
 
-    public async Task<ActionResult> Delete (int id)
-    {
-        var usuario = await unitofwork.Usuarios.GetByIdAsync(id);
+    //     if (usuario == null)
+    //     {
+    //         return Notfound();
+    //     }
 
-        if (usuario == null)
-        {
-            return Notfound();
-        }
-
-        unitofwork.Usuarios.Remove(usuario);
-        await unitofwork.SaveAsync();
-        return NoContent();
-    }
+    //     unitofwork.Usuarios.Remove(usuario);
+    //     await unitofwork.SaveAsync();
+    //     return NoContent();
+    // }
 
     [HttpPost("register")]
     public async Task<ActionResult> RegisterAsync(RegisterDto model)
@@ -140,8 +140,8 @@ public class UserController : BaseApiController
         Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
     }
 
-    private ActionResult Notfound()
-    {
-        throw new NotImplementedException();
-    }
+    // private ActionResult Notfound()
+    // {
+    //     throw new NotImplementedException();
+    // }
 }

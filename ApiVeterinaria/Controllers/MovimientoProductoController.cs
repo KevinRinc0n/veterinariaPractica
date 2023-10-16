@@ -8,6 +8,9 @@ using ApiVeterinaria.Helpers;
 
 namespace ApiVeterinaria.Controllers;
 
+[ApiVersion("1.0")]
+[ApiVersion("1.1")]
+
 public class MovimientoProductoController : BaseApiController
 {
     private IUnitOfWork unitofwork;
@@ -20,7 +23,8 @@ public class MovimientoProductoController : BaseApiController
     } 
 
     [HttpGet]
-    [Authorize]    
+    [MapToApiVersion("1.1")]
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -32,7 +36,7 @@ public class MovimientoProductoController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    [Authorize]    
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -43,7 +47,7 @@ public class MovimientoProductoController : BaseApiController
     }
 
     [HttpPost]
-    [Authorize]    
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<MovimientoProducto>> Post(MovimientoProducto movimientoProductoDto)
@@ -59,7 +63,7 @@ public class MovimientoProductoController : BaseApiController
     }
 
     [HttpPut]
-    [Authorize]    
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -76,7 +80,7 @@ public class MovimientoProductoController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    [Authorize]    
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 

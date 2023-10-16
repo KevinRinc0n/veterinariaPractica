@@ -8,6 +8,9 @@ using ApiVeterinaria.Helpers;
 
 namespace ApiVeterinaria.Controllers;
 
+[ApiVersion("1.0")]
+[ApiVersion("1.1")]
+
 public class LaboratorioController : BaseApiController
 {
     private IUnitOfWork unitofwork;
@@ -20,7 +23,8 @@ public class LaboratorioController : BaseApiController
     } 
 
     [HttpGet]
-    [Authorize]    
+    [MapToApiVersion("1.1")]
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -32,7 +36,7 @@ public class LaboratorioController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    [Authorize]    
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -43,7 +47,7 @@ public class LaboratorioController : BaseApiController
     }
 
     [HttpPost]
-    [Authorize]    
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Laboratorio>> Post(Laboratorio laboratorioDto)
@@ -59,7 +63,7 @@ public class LaboratorioController : BaseApiController
     }
 
     [HttpPut]
-    [Authorize]    
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -76,7 +80,7 @@ public class LaboratorioController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    [Authorize]    
+    // [Authorize]    
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
