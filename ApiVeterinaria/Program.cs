@@ -12,8 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
-builder.Services.AddAplicacionServices();
 builder.Services.ConfigureCors();
+builder.Services.AddAplicacionServices();
 builder.Services.AddJwt(builder.Configuration);
 
 builder.Services.AddDbContext<ApiVeterinariaContext>(options =>

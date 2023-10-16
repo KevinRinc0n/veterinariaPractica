@@ -1,6 +1,6 @@
 namespace Dominio.Entities;
 
-public class RefreshToken
+public class RefreshToken : BaseEntity
 {
     public int IdUserFk { get; set; }
     public User User { get; set; }
