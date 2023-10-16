@@ -3,6 +3,8 @@ using AutoMapper;
 using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using ApiVeterinaria.Helpers;
+using ApiFarmacia.Helpers;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -22,10 +24,11 @@ public class CitaController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<Cita>>> Get()
+    public async Task<ActionResult<Pager<Cita>>> Get([FromQuery]Params citaParams)
     {
-        var cita = await unitofwork.Citas.GetAllAsync();
-        return mapper.Map<List<Cita>>(cita);
+        var cita = await unitofwork.Citas.GetAllAsync(citaParams.PageIndex,citaParams.PageSize, citaParams.Search);
+        var listaCitas = mapper.Map<List<Cita>>(cita.registros);
+        return new Pager<Cita>(listaCitas, cita.totalRegistros,citaParams.PageIndex,citaParams.PageSize,citaParams.Search);
     }
 
     [HttpGet("{id}")]

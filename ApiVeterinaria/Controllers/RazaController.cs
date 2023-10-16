@@ -3,6 +3,8 @@ using AutoMapper;
 using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using ApiFarmacia.Helpers;
+using ApiVeterinaria.Helpers;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -22,10 +24,11 @@ public class RazaController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<Raza>>> Get()
+    public async Task<ActionResult<Pager<Raza>>> Get([FromQuery]Params razaParams)
     {
-        var raza = await unitofwork.Razas.GetAllAsync();
-        return mapper.Map<List<Raza>>(raza);
+        var raza = await unitofwork.Razas.GetAllAsync(razaParams.PageIndex,razaParams.PageSize, razaParams.Search);
+        var listaRazas = mapper.Map<List<Raza>>(raza.registros);
+        return new Pager<Raza>(listaRazas, raza.totalRegistros,razaParams.PageIndex,razaParams.PageSize,razaParams.Search);
     }
 
     [HttpGet("{id}")]

@@ -2,6 +2,7 @@ using System.Text;
 using ApiVeterinaria.Helpers;
 using ApiVeterinaria.Services;
 using Aplicacion.UnitOfWork;
+using AspNetCoreRateLimit;
 using Dominio.Entities;
 using Dominio.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -52,5 +53,28 @@ public static class ApplicationServiceExtensions
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Key"]))
                 };
             });
+    }
+
+    public static void ConfiguraRatelimiting(this IServiceCollection services)
+    {
+        services.AddMemoryCache();
+        services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+        services.AddInMemoryRateLimiting();
+        services.Configure<IpRateLimitOptions>(options =>
+        {
+            options.EnableEndpointRateLimiting = true;
+            options.StackBlockedRequests = false;
+            options.HttpStatusCode = 429;
+            options.RealIpHeader = "X-Real-Ip";
+            options.GeneralRules = new List<RateLimitRule> 
+            {
+                new RateLimitRule
+                {
+                    Endpoint = "*",
+                    Period = "10s",
+                    Limit = 2
+                }
+            };
+        });
     }
 }

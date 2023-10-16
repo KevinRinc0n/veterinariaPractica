@@ -3,6 +3,8 @@ using AutoMapper;
 using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using ApiVeterinaria.Helpers;
+using ApiFarmacia.Helpers;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -22,10 +24,11 @@ public class EspecieController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<Especie>>> Get()
+    public async Task<ActionResult<Pager<Especie>>> Get([FromQuery]Params especieParams)
     {
-        var especie = await unitofwork.Especies.GetAllAsync();
-        return mapper.Map<List<Especie>>(especie);
+        var especie = await unitofwork.Especies.GetAllAsync(especieParams.PageIndex,especieParams.PageSize, especieParams.Search);
+        var listaEspecies = mapper.Map<List<Especie>>(especie.registros);
+        return new Pager<Especie>(listaEspecies, especie.totalRegistros,especieParams.PageIndex,especieParams.PageSize,especieParams.Search);
     }
 
     [HttpGet("{id}")]
