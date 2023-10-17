@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiFarmacia.Helpers;
 using ApiVeterinaria.Helpers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -21,6 +24,19 @@ public class ProveedorController : BaseApiController
         this.unitofwork = unitOfWork;
         this.mapper = mapper;
     } 
+
+    [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<Proveedor>>> Get0([FromQuery]Params proveedorParams)
+    {
+        var proveedor = await unitofwork.Proveedores.GetAllAsync(proveedorParams.PageIndex,proveedorParams.PageSize, proveedorParams.Search);
+        var listaProveedores = mapper.Map<List<Proveedor>>(proveedor.registros);
+        return new Pager<Proveedor>(listaProveedores, proveedor.totalRegistros,proveedorParams.PageIndex,proveedorParams.PageSize,proveedorParams.Search);
+    }
 
     [HttpGet]
     [MapToApiVersion("1.1")]
@@ -97,6 +113,16 @@ public class ProveedorController : BaseApiController
         await unitofwork.SaveAsync();
         return NoContent();
     }
+
+    [HttpGet("medicamentoDeterminado")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<LaboratorioDeterMedicDto>>> GetVeterinario(string nombre)
+    {
+        var deterMedicamento = await unitofwork.Proveedores.proveedorMedicaDeterminado(nombre);
+        return mapper.Map<List<LaboratorioDeterMedicDto>>(deterMedicamento);
+    }
+
 
     private ActionResult Notfound()
     {

@@ -20,7 +20,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(c => c.Contraseña)
         .IsRequired()
-        .HasMaxLength(50);
+        .HasMaxLength(255);
 
          builder.HasMany(p => p.Roles)
             .WithMany(r => r.Usuarios)

@@ -47,5 +47,17 @@ public class MedicamentoConfiguration : IEntityTypeConfiguration<Medicamento>
         builder.HasOne(c => c.Laboratorio)
         .WithMany(c => c.Medicamentos)
         .HasForeignKey(c => c.IdLaboratorioFk);
+
+        builder.HasData(
+            new Medicamento { Id = 1, Nombre = "Clonazepan", Stock = 34, Precio = 33.4, IdLaboratorioFk = 1},
+            new Medicamento { Id = 2, Nombre = "Dolex", Stock = 2, Precio = 12.12, IdLaboratorioFk = 1},
+            new Medicamento { Id = 3, Nombre = "Acetaminofen", Stock = 55, Precio = 1.54, IdLaboratorioFk = 1},
+            new Medicamento { Id = 4, Nombre = "Jarabe para la tos", Stock = 1, Precio = 9.89, IdLaboratorioFk = 2},
+            new Medicamento { Id = 5, Nombre = "Dolex Liquido", Stock = 98, Precio = 543.5, IdLaboratorioFk = 2},
+            new Medicamento { Id = 6, Nombre = "Diclofenaco", Stock = 14, Precio = 6000, IdLaboratorioFk = 2},
+            new Medicamento { Id = 7, Nombre = "Naproxeno", Stock = 31, Precio = 7000, IdLaboratorioFk = 2},
+            new Medicamento { Id = 8, Nombre = "Loratadina ", Stock = 21, Precio = 5001, IdLaboratorioFk = 2},
+            new Medicamento { Id = 9, Nombre = "Dolex", Stock = 4, Precio = 23.12, IdLaboratorioFk = 2}
+        ); 
     }
 }

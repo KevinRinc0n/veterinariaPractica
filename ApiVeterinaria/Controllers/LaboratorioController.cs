@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiFarmacia.Helpers;
 using ApiVeterinaria.Helpers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -21,6 +24,19 @@ public class LaboratorioController : BaseApiController
         this.unitofwork = unitOfWork;
         this.mapper = mapper;
     } 
+
+    [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<Laboratorio>>> Get0([FromQuery]Params laboratorioParams)
+    {
+        var laboratorio = await unitofwork.Laboratorios.GetAllAsync(laboratorioParams.PageIndex,laboratorioParams.PageSize, laboratorioParams.Search);
+        var listaLaboratorios = mapper.Map<List<Laboratorio>>(laboratorio.registros);
+        return new Pager<Laboratorio>(listaLaboratorios, laboratorio.totalRegistros,laboratorioParams.PageIndex,laboratorioParams.PageSize,laboratorioParams.Search);
+    }
 
     [HttpGet]
     [MapToApiVersion("1.1")]
@@ -96,6 +112,15 @@ public class LaboratorioController : BaseApiController
         unitofwork.Laboratorios.Remove(laboratorio);
         await unitofwork.SaveAsync();
         return NoContent();
+    }
+
+    [HttpGet("genfar")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<MedicamentoLaboDto>>> GetLabosGenfar()
+    {
+        var laboratorio = await unitofwork.Laboratorios.medicamentosGenfar();
+        return mapper.Map<List<MedicamentoLaboDto>>(laboratorio);
     }
 
     private ActionResult Notfound()

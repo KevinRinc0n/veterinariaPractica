@@ -12,11 +12,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.ConfiguraRatelimiting();
-builder.Services.ConfigureApiVersioning();
-builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
 builder.Services.ConfigureCors();
 builder.Services.AddAplicacionServices();
+builder.Services.ConfigureApiVersioning();
+builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
+builder.Services.ConfigureRatelimiting();
 builder.Services.AddJwt(builder.Configuration);
 
 builder.Services.AddDbContext<ApiVeterinariaContext>(options =>

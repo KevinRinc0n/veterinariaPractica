@@ -36,5 +36,13 @@ public class MovimientoMedicamentoConfiguration : IEntityTypeConfiguration<Movim
         builder.HasOne(c => c.TipoMovimiento)
         .WithMany(c => c.MovimientosMedicamentos)
         .HasForeignKey(c => c.IdTipoMovimientoFk);
+
+        builder.HasData(
+            new MovimientoMedicamento { Id = 1, IdMedicamentoFk = 1, IdTipoMovimientoFk = 1, Cantidad = 3, CostoTotal = "33.3", FechaMovimiento = DateTime.Now},
+            new MovimientoMedicamento { Id = 2, IdMedicamentoFk = 1, IdTipoMovimientoFk = 2, Cantidad = 1, CostoTotal = "65.3", FechaMovimiento = DateTime.Now},
+            new MovimientoMedicamento { Id = 3, IdMedicamentoFk = 2, IdTipoMovimientoFk = 2, Cantidad = 2, CostoTotal = "7000", FechaMovimiento = DateTime.Now},
+            new MovimientoMedicamento { Id = 4, IdMedicamentoFk = 3, IdTipoMovimientoFk = 1, Cantidad = 3, CostoTotal = "6546.8", FechaMovimiento = DateTime.Now},
+            new MovimientoMedicamento { Id = 5, IdMedicamentoFk = 2, IdTipoMovimientoFk = 2, Cantidad = 3, CostoTotal = "2500", FechaMovimiento = DateTime.Now}
+        );
     }
 }

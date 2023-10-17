@@ -13,5 +13,12 @@ public class EspecieConfiguration : IEntityTypeConfiguration<Especie>
         builder.Property(c => c.Nombre)
         .IsRequired()
         .HasMaxLength(50); 
+
+        builder.HasData(
+            new Especie { Id = 1, Nombre = "Felino"},
+            new Especie { Id = 2, Nombre = "Anfibio"},
+            new Especie { Id = 3, Nombre = "Reptil"},
+            new Especie { Id = 4, Nombre = "Canino"}
+        );
     }
 }

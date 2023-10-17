@@ -12,4 +12,6 @@ public class MovimientoMedicamentoRepository : GenericRepository<MovimientoMedic
     {
         _context = context;
     }
+
+    
 }

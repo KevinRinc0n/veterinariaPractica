@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiFarmacia.Helpers;
 using ApiVeterinaria.Helpers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -21,6 +24,19 @@ public class PropietarioController : BaseApiController
         this.unitofwork = unitOfWork;
         this.mapper = mapper;
     } 
+
+    [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<Propietario>>> Get0([FromQuery]Params propietarioParams)
+    {
+        var propietario = await unitofwork.Propietarios.GetAllAsync(propietarioParams.PageIndex,propietarioParams.PageSize, propietarioParams.Search);
+        var listaPropietarios = mapper.Map<List<Propietario>>(propietario.registros);
+        return new Pager<Propietario>(listaPropietarios, propietario.totalRegistros,propietarioParams.PageIndex,propietarioParams.PageSize,propietarioParams.Search);
+    }
 
     [HttpGet]
     [MapToApiVersion("1.1")]
@@ -96,6 +112,15 @@ public class PropietarioController : BaseApiController
         unitofwork.Propietarios.Remove(propietario);
         await unitofwork.SaveAsync();
         return NoContent();
+    }
+
+    [HttpGet("mascotaPropietario")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<PropietarioDto>>> GetPropieMascotas()
+    {
+        var propietario = await unitofwork.Propietarios.propietarioYMascotas();
+        return mapper.Map<List<PropietarioDto>>(propietario);
     }
 
     private ActionResult Notfound()

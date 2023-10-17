@@ -43,5 +43,15 @@ public class CitaConfiguration : IEntityTypeConfiguration<Cita>
         builder.HasOne(c => c.Veterinario)
         .WithMany(c => c.Citas)
         .HasForeignKey(c => c.IdVeterinarioFk);
+
+        DateTime fechaCita1 = new DateTime(2023, 2, 2);
+        DateTime fechaCita2 = new DateTime(2023, 1, 4);
+
+        builder.HasData(
+            new Cita { Id = 1, IdTratamientoFk = 3, IdMascotaFk = 1, IdVeterinarioFk = 4, FechaCita = fechaCita1, HoraCita = DateTime.Now.TimeOfDay, Motivo = "Vacunacion" },
+            new Cita { Id = 2, IdTratamientoFk = 1, IdMascotaFk = 4, IdVeterinarioFk = 5, FechaCita = fechaCita2, HoraCita = DateTime.Now.TimeOfDay, Motivo = "Vacunacion" },
+            new Cita { Id = 3, IdTratamientoFk = 2, IdMascotaFk = 3, IdVeterinarioFk = 1, FechaCita = fechaCita1, HoraCita = DateTime.Now.TimeOfDay, Motivo = "Revision general"},
+            new Cita { Id = 4, IdTratamientoFk = 3, IdMascotaFk = 2, IdVeterinarioFk = 4, FechaCita = fechaCita2, HoraCita = DateTime.Now.TimeOfDay, Motivo = "Vacunacion"}
+        );
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiFarmacia.Helpers;
 using ApiVeterinaria.Helpers;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -22,16 +23,29 @@ public class VeterinarioController : BaseApiController
     } 
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<TratamientoMedico>>> Get0([FromQuery]Params tratamientoMedicoParams)
+    {
+        var tratamientoMedico = await unitofwork.TratamientosMedicos.GetAllAsync(tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize, tratamientoMedicoParams.Search);
+        var listaTratamientosMedicos = mapper.Map<List<TratamientoMedico>>(tratamientoMedico.registros);
+        return new Pager<TratamientoMedico>(listaTratamientosMedicos, tratamientoMedico.totalRegistros,tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize,tratamientoMedicoParams.Search);
+    }
+
+    [HttpGet]
     [MapToApiVersion("1.1")]
     // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<Veterinario>>> Get([FromQuery]Params veterinarioParams)
+    public async Task<ActionResult<Pager<TratamientoMedico>>> Get([FromQuery]Params tratamientoMedicoParams)
     {
-        var veterinario = await unitofwork.Veterinarios.GetAllAsync(veterinarioParams.PageIndex,veterinarioParams.PageSize, veterinarioParams.Search);
-        var listaVeterinarios = mapper.Map<List<Veterinario>>(veterinario.registros);
-        return new Pager<Veterinario>(listaVeterinarios, veterinario.totalRegistros,veterinarioParams.PageIndex,veterinarioParams.PageSize,veterinarioParams.Search);
+        var tratamientoMedico = await unitofwork.TratamientosMedicos.GetAllAsync(tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize, tratamientoMedicoParams.Search);
+        var listaTratamientosMedicos = mapper.Map<List<TratamientoMedico>>(tratamientoMedico.registros);
+        return new Pager<TratamientoMedico>(listaTratamientosMedicos, tratamientoMedico.totalRegistros,tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize,tratamientoMedicoParams.Search);
     }
 
     [HttpGet("{id}")]
@@ -95,6 +109,15 @@ public class VeterinarioController : BaseApiController
         unitofwork.Veterinarios.Remove(veterinario);
         await unitofwork.SaveAsync();
         return NoContent();
+    }
+
+    [HttpGet("especialidad")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<VeterinarioDto>>> GetEspecialidad()
+    {
+        var veterinario = await unitofwork.Veterinarios.veterinarioCirujanoVascular();
+        return mapper.Map<List<VeterinarioDto>>(veterinario);
     }
 
     private ActionResult Notfound()

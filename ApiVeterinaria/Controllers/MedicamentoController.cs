@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiFarmacia.Helpers;
 using ApiVeterinaria.Helpers;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -21,6 +22,19 @@ public class MedicamentoController : BaseApiController
         this.unitofwork = unitOfWork;
         this.mapper = mapper;
     } 
+
+    [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<Medicamento>>> Get0([FromQuery]Params medicamentoParams)
+    {
+        var medicamento = await unitofwork.Medicamentos.GetAllAsync(medicamentoParams.PageIndex,medicamentoParams.PageSize, medicamentoParams.Search);
+        var listaMedicamentos = mapper.Map<List<Medicamento>>(medicamento.registros);
+        return new Pager<Medicamento>(listaMedicamentos, medicamento.totalRegistros,medicamentoParams.PageIndex,medicamentoParams.PageSize,medicamentoParams.Search);
+    }
 
     [HttpGet]
     [MapToApiVersion("1.1")]
@@ -96,6 +110,15 @@ public class MedicamentoController : BaseApiController
         unitofwork.Medicamentos.Remove(medicamento);
         await unitofwork.SaveAsync();
         return NoContent();
+    }
+
+    [HttpGet("mayor5000")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<Medicamento5000Dto>>> GetCaro()
+    {
+        var medicamento = await unitofwork.Medicamentos.medicamentos5000();
+        return mapper.Map<List<Medicamento5000Dto>>(medicamento);
     }
 
     private ActionResult Notfound()

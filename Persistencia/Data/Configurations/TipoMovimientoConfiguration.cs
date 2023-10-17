@@ -13,5 +13,10 @@ public class TipoMovimientoConfiguration : IEntityTypeConfiguration<TipoMovimien
         builder.Property(c => c.Descripcion)
         .IsRequired()
         .HasMaxLength(50);
+
+        builder.HasData(
+            new TipoMovimiento { Id = 1, Descripcion = "Venta"},
+            new TipoMovimiento { Id = 2, Descripcion = "Compra"}
+        );
     }
 }

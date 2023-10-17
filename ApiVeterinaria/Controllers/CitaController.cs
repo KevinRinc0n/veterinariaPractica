@@ -23,6 +23,19 @@ public class CitaController : BaseApiController
     } 
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<Cita>>> Get0([FromQuery]Params citaParams)
+    {
+        var cita = await unitofwork.Citas.GetAllAsync(citaParams.PageIndex,citaParams.PageSize, citaParams.Search);
+        var listaCitas = mapper.Map<List<Cita>>(cita.registros);
+        return new Pager<Cita>(listaCitas, cita.totalRegistros,citaParams.PageIndex,citaParams.PageSize,citaParams.Search);
+    }
+
+    [HttpGet]
     [MapToApiVersion("1.1")]
     // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]

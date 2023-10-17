@@ -1,7 +1,10 @@
-namespace ApiVeterinaria.Dtos;
+using ApiVeterinaria.Dtos;
+
+namespace API.Dtos;
 
 public class MascotaDto
 {
-    public string Nombre { get; set; }
-    public int IdEspecieFk { get; set; }
+    public int Id {get; set;}
+    public string Nombre {get; set;}
+    public DateTime FechaNacimiento {get; set;}
 }

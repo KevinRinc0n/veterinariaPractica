@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ApiVeterinaria.Dtos;
 
-public class AddRolDto
+public class AddRoleDto
 {
     [Required]
     public string Username { get; set; }

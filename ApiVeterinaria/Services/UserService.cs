@@ -15,19 +15,25 @@ namespace ApiVeterinaria.Services;
 public class UserService : IUserService
 {
     private readonly JWT _jwt;
-    
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPasswordHasher<User> _passwordHasher;
-
     public UserService(IUnitOfWork unitOfWork, IOptions<JWT> jwt, IPasswordHasher<User> passwordHasher)
     {
         _jwt = jwt.Value;
         _unitOfWork = unitOfWork;
         _passwordHasher = passwordHasher;
     }
-
     public async Task<string> RegisterAsync(RegisterDto registerDto)
+{
+    try
     {
+        var existingUser = await _unitOfWork.Usuarios.GetByUsernameAsync(registerDto.Username);
+
+        if (existingUser != null)
+        {
+            return $"User {registerDto.Username} already registered.";
+        }
+
         var user = new User
         {
             Email = registerDto.Email,
@@ -36,34 +42,29 @@ public class UserService : IUserService
 
         user.Contraseña = _passwordHasher.HashPassword(user, registerDto.Password);
 
-        var existingUser = _unitOfWork.Usuarios
-                                    .Find(u => u.Nombre.ToLower() == registerDto.Username.ToLower())
-                                    .FirstOrDefault();
-
-        if (existingUser == null)
+        var rolDefault = _unitOfWork.Roles.Find(u => u.Nombre == Authorization.rol_default.ToString()).FirstOrDefault();
+        if (rolDefault == null)
         {
-            var rolDefault = _unitOfWork.Roles
-                                    .Find(u => u.Nombre == Authorization.rol_default.ToString())
-                                    .First();
-            try
-            {
-                user.Roles.Add(rolDefault);
-                _unitOfWork.Usuarios.Add(user);
-                await _unitOfWork.SaveAsync();
+            return $"Default role '{Authorization.rol_default}' not found.";
+        }
 
-                return $"User  {registerDto.Username} has been registered successfully";
-            }
-            catch (Exception ex)
-            {
-                var message = ex.Message;
-                return $"Error: {message}";
-            }
-        }
-        else
-        {
-            return $"User {registerDto.Username} already registered.";
-        }
+        user.Roles.Add(rolDefault);
+
+        _unitOfWork.Usuarios.Add(user);
+        await _unitOfWork.SaveAsync();
+
+        return $"User {registerDto.Username} has been registered successfully";
     }
+    catch (Exception ex)
+    {
+        var errorMessage = $"Error: {ex.Message}";
+        if (ex.InnerException != null)
+        {
+            errorMessage += $" Inner Exception: {ex.InnerException.Message}";
+        }
+        return errorMessage;
+    }
+}
     public async Task<DataUserDto> GetTokenAsync(LoginDto model)
     {
         DataUserDto dataUserDto = new DataUserDto();
@@ -73,7 +74,7 @@ public class UserService : IUserService
         if (user == null)
         {
             dataUserDto.IsAuthenticated = false;
-            dataUserDto.Message = $"Usuario no Existe";
+            dataUserDto.Message = $"User does not exist with username {model.Username}.";
             return dataUserDto;
         }
 
@@ -109,10 +110,10 @@ public class UserService : IUserService
             return dataUserDto;
         }
         dataUserDto.IsAuthenticated = false;
-        dataUserDto.Message = $"Credenciales incorrectas para el usuario";
+        dataUserDto.Message = $"Credenciales incorrectas para el usuario {user.Nombre}.";
         return dataUserDto;
     }
-    public async Task<string> AddRoleAsync(AddRolDto model)
+    public async Task<string> AddRoleAsync(AddRoleDto model)
     {
 
         var user = await _unitOfWork.Usuarios
@@ -228,4 +229,5 @@ public class UserService : IUserService
             signingCredentials: signingCredentials);
         return jwtSecurityToken;
     }
+
 }

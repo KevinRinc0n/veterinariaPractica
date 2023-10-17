@@ -1,6 +1,7 @@
 using ApiVeterinaria.Dtos;
 using Dominio.Entities;
 using AutoMapper;
+using API.Dtos;
 
 namespace ApiVeterinaria.Profiles;
 
@@ -22,12 +23,29 @@ public class MappingProfiles : Profile
 
         CreateMap<Especie, EspecieDto>().ReverseMap();
 
-        CreateMap<MovimientoMedicamento, MovimientoMedicamentoDto>().ReverseMap();
+        CreateMap<Medicamento, MovimientoMedicamentoDto>().ReverseMap();
 
         CreateMap<Cita, CitaVeterinarioDto>().ReverseMap();
         
         CreateMap<Laboratorio, LaboratorioDto>().ReverseMap();
 
         CreateMap<Raza, RazaDto>().ReverseMap();
+
+        CreateMap<Medicamento, laboMedicamentoDto>().ReverseMap();
+
+        CreateMap<Laboratorio, MedicamentoLaboDto>().ReverseMap();
+
+        CreateMap<Medicamento, Medicamento5000Dto>().ReverseMap();
+
+        CreateMap<Mascota, MascotaVacunadaDto>().ReverseMap();
+
+        CreateMap<MovimientoMedicamento, MedicamentoMovimientoDto>().ReverseMap();
+
+        CreateMap<Mascota, MascotaAtendidaVeteDto>().ReverseMap();
+
+        CreateMap<Cita, CitasDto>().ReverseMap();
+
+        CreateMap<Laboratorio, LaboratorioDeterMedicDto>().ReverseMap();
+
     }
 }

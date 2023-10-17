@@ -23,6 +23,19 @@ public class RazaController : BaseApiController
     } 
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<Raza>>> Get0([FromQuery]Params razaParams)
+    {
+        var raza = await unitofwork.Razas.GetAllAsync(razaParams.PageIndex,razaParams.PageSize, razaParams.Search);
+        var listaRazas = mapper.Map<List<Raza>>(raza.registros);
+        return new Pager<Raza>(listaRazas, raza.totalRegistros,razaParams.PageIndex,razaParams.PageSize,razaParams.Search);
+    }
+
+    [HttpGet]
     [MapToApiVersion("1.1")]
     // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -96,6 +109,15 @@ public class RazaController : BaseApiController
         unitofwork.Razas.Remove(raza);
         await unitofwork.SaveAsync();
         return NoContent();
+    }
+
+    [HttpGet("mascotasXRaza")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<Object>>> GetRazas()
+    {
+        var mascota = await unitofwork.Razas.mascotasPorRaza();
+        return Ok(mascota);
     }
 
     private ActionResult Notfound()

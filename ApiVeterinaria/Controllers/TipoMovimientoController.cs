@@ -23,6 +23,19 @@ public class TipoMovimientoController : BaseApiController
     } 
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<TipoMovimiento>>> Get0([FromQuery]Params tipoMovimientoParams)
+    {
+        var tipoMovimiento = await unitofwork.TiposMovimientos.GetAllAsync(tipoMovimientoParams.PageIndex,tipoMovimientoParams.PageSize, tipoMovimientoParams.Search);
+        var listaTiposMovimientos = mapper.Map<List<TipoMovimiento>>(tipoMovimiento.registros);
+        return new Pager<TipoMovimiento>(listaTiposMovimientos, tipoMovimiento.totalRegistros,tipoMovimientoParams.PageIndex,tipoMovimientoParams.PageSize,tipoMovimientoParams.Search);
+    }
+
+    [HttpGet]
     [MapToApiVersion("1.1")]
     // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]

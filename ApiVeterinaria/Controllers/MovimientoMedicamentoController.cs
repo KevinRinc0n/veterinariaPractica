@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiFarmacia.Helpers;
 using ApiVeterinaria.Helpers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -21,6 +24,19 @@ public class MovimientoMedicamentoController : BaseApiController
         this.unitofwork = unitOfWork;
         this.mapper = mapper;
     } 
+
+    [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<MovimientoMedicamento>>> Get0([FromQuery]Params movimientoMedicamentoParams)
+    {
+        var movimientoMedicamento = await unitofwork.MovimientosMedicamentos.GetAllAsync(movimientoMedicamentoParams.PageIndex,movimientoMedicamentoParams.PageSize, movimientoMedicamentoParams.Search);
+        var listaMovimientosMedicamentos = mapper.Map<List<MovimientoMedicamento>>(movimientoMedicamento.registros);
+        return new Pager<MovimientoMedicamento>(listaMovimientosMedicamentos, movimientoMedicamento.totalRegistros,movimientoMedicamentoParams.PageIndex,movimientoMedicamentoParams.PageSize,movimientoMedicamentoParams.Search);
+    }
 
     [HttpGet]
     [MapToApiVersion("1.1")]
@@ -96,6 +112,15 @@ public class MovimientoMedicamentoController : BaseApiController
         unitofwork.MovimientosMedicamentos.Remove(movimientoMedicamento);
         await unitofwork.SaveAsync();
         return NoContent();
+    }
+
+    [HttpGet("movimientosMedicamentos")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<MovimientoMedicamentoDto>>> GetMovimientosMedic()
+    {
+        var movimientosMedi = await unitofwork.Medicamentos.movimientoMedicamentos();
+        return mapper.Map<List<MovimientoMedicamentoDto>>(movimientosMedi);
     }
 
     private ActionResult Notfound()

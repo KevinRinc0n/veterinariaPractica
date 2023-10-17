@@ -23,6 +23,19 @@ public class EspecieController : BaseApiController
     } 
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<Especie>>> Get0([FromQuery]Params especieParams)
+    {
+        var especie = await unitofwork.Especies.GetAllAsync(especieParams.PageIndex,especieParams.PageSize, especieParams.Search);
+        var listaEspecies = mapper.Map<List<Especie>>(especie.registros);
+        return new Pager<Especie>(listaEspecies, especie.totalRegistros,especieParams.PageIndex,especieParams.PageSize,especieParams.Search);
+    }
+
+    [HttpGet]
     [MapToApiVersion("1.1")]
     // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -96,6 +109,15 @@ public class EspecieController : BaseApiController
         unitofwork.Especies.Remove(especie);
         await unitofwork.SaveAsync();
         return NoContent();
+    }
+
+    [HttpGet("mascotaXEspecie")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<object>>> GetMacotaPorEspecie()
+    {
+        var mascotaXEspec = await unitofwork.Especies.mascotaXEspecie();
+        return Ok(mascotaXEspec);
     }
 
     private ActionResult Notfound()

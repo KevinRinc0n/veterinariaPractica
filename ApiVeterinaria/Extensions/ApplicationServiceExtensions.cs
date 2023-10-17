@@ -57,7 +57,7 @@ public static class ApplicationServiceExtensions
             });
     }
 
-    public static void ConfiguraRatelimiting(this IServiceCollection services)
+    public static void ConfigureRatelimiting(this IServiceCollection services)
     {
         services.AddMemoryCache();
         services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();

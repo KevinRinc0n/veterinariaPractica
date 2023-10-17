@@ -21,5 +21,11 @@ public class PropietarioConfiguration : IEntityTypeConfiguration<Propietario>
         builder.Property(c => c.Telefono)
         .IsRequired()
         .HasMaxLength(50);
+        
+        builder.HasData(
+            new Propietario { Id = 1, Nombre = "pri", Email = "pri@gmail.com", Telefono = "3213"},
+            new Propietario { Id = 2, Nombre = "raul", Email = "raul@gmail.com", Telefono = "54545"},
+            new Propietario { Id = 3, Nombre = "stiven", Email = "stiven@gmail.com", Telefono = "87878"}
+        );
     }
 }

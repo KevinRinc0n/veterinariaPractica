@@ -23,6 +23,19 @@ public class ProductoController : BaseApiController
     } 
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<Producto>>> Get0([FromQuery]Params productoParams)
+    {
+        var producto = await unitofwork.Productos.GetAllAsync(productoParams.PageIndex,productoParams.PageSize, productoParams.Search);
+        var listaProductos = mapper.Map<List<Producto>>(producto.registros);
+        return new Pager<Producto>(listaProductos, producto.totalRegistros,productoParams.PageIndex,productoParams.PageSize,productoParams.Search);
+    }
+
+    [HttpGet]
     [MapToApiVersion("1.1")]
     // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]

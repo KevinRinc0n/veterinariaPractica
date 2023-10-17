@@ -23,6 +23,19 @@ public class MovimientoProductoController : BaseApiController
     } 
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
+    // [Authorize]    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    public async Task<ActionResult<Pager<MovimientoProducto>>> Get0([FromQuery]Params movimientoProductoParams)
+    {
+        var movimientoProducto = await unitofwork.MovimientosProductos.GetAllAsync(movimientoProductoParams.PageIndex,movimientoProductoParams.PageSize, movimientoProductoParams.Search);
+        var listaMovimientosProductos = mapper.Map<List<MovimientoProducto>>(movimientoProducto.registros);
+        return new Pager<MovimientoProducto>(listaMovimientosProductos, movimientoProducto.totalRegistros,movimientoProductoParams.PageIndex,movimientoProductoParams.PageSize,movimientoProductoParams.Search);
+    }
+
+    [HttpGet]
     [MapToApiVersion("1.1")]
     // [Authorize]    
     [ProducesResponseType(StatusCodes.Status200OK)]
