@@ -51,7 +51,6 @@ public class MascotaRepository : GenericRepository<Mascota>, IMascota
     {
         var mascotaGoldenRetriever = await _context.Mascotas
             .Where(m => m.Raza.Nombre == "Golden Retriver")
-            .Include(c => c.Raza)
             .Include(c => c.Propietario)
             .ToListAsync();
 

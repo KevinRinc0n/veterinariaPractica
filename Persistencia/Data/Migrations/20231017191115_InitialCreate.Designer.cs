@@ -11,8 +11,8 @@ using Persistencia.Data;
 namespace Persistencia.Data.Migrations
 {
     [DbContext(typeof(ApiVeterinariaContext))]
-    [Migration("20231017053136_InitialCreatreggfgfghgfgefef")]
-    partial class InitialCreatreggfgfghgfgefef
+    [Migration("20231017191115_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,7 +63,7 @@ namespace Persistencia.Data.Migrations
                         {
                             Id = 1,
                             FechaCita = new DateTime(2023, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HoraCita = new TimeSpan(18961521858),
+                            HoraCita = new TimeSpan(510755625129),
                             IdMascotaFk = 1,
                             IdTratamientoFk = 3,
                             IdVeterinarioFk = 4,
@@ -73,7 +73,7 @@ namespace Persistencia.Data.Migrations
                         {
                             Id = 2,
                             FechaCita = new DateTime(2023, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HoraCita = new TimeSpan(18961521873),
+                            HoraCita = new TimeSpan(510755625148),
                             IdMascotaFk = 4,
                             IdTratamientoFk = 1,
                             IdVeterinarioFk = 5,
@@ -83,7 +83,7 @@ namespace Persistencia.Data.Migrations
                         {
                             Id = 3,
                             FechaCita = new DateTime(2023, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HoraCita = new TimeSpan(18961521874),
+                            HoraCita = new TimeSpan(510755625150),
                             IdMascotaFk = 3,
                             IdTratamientoFk = 2,
                             IdVeterinarioFk = 1,
@@ -93,7 +93,7 @@ namespace Persistencia.Data.Migrations
                         {
                             Id = 4,
                             FechaCita = new DateTime(2023, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            HoraCita = new TimeSpan(18961521876),
+                            HoraCita = new TimeSpan(510755625152),
                             IdMascotaFk = 2,
                             IdTratamientoFk = 3,
                             IdVeterinarioFk = 4,
@@ -262,7 +262,7 @@ namespace Persistencia.Data.Migrations
                         new
                         {
                             Id = 1,
-                            FechaNacimiento = new DateTime(2023, 10, 17, 0, 31, 36, 154, DateTimeKind.Local).AddTicks(2526),
+                            FechaNacimiento = new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7467),
                             IdEspecieFk = 1,
                             IdPropietarioFk = 1,
                             IdRazaFk = 1,
@@ -271,7 +271,7 @@ namespace Persistencia.Data.Migrations
                         new
                         {
                             Id = 2,
-                            FechaNacimiento = new DateTime(2023, 10, 17, 0, 31, 36, 154, DateTimeKind.Local).AddTicks(2531),
+                            FechaNacimiento = new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7476),
                             IdEspecieFk = 1,
                             IdPropietarioFk = 1,
                             IdRazaFk = 1,
@@ -280,7 +280,7 @@ namespace Persistencia.Data.Migrations
                         new
                         {
                             Id = 3,
-                            FechaNacimiento = new DateTime(2023, 10, 17, 0, 31, 36, 154, DateTimeKind.Local).AddTicks(2532),
+                            FechaNacimiento = new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7478),
                             IdEspecieFk = 2,
                             IdPropietarioFk = 3,
                             IdRazaFk = 1,
@@ -289,7 +289,7 @@ namespace Persistencia.Data.Migrations
                         new
                         {
                             Id = 4,
-                            FechaNacimiento = new DateTime(2023, 10, 17, 0, 31, 36, 154, DateTimeKind.Local).AddTicks(2534),
+                            FechaNacimiento = new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7479),
                             IdEspecieFk = 1,
                             IdPropietarioFk = 1,
                             IdRazaFk = 1,
@@ -298,7 +298,7 @@ namespace Persistencia.Data.Migrations
                         new
                         {
                             Id = 5,
-                            FechaNacimiento = new DateTime(2023, 10, 17, 0, 31, 36, 154, DateTimeKind.Local).AddTicks(2535),
+                            FechaNacimiento = new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7480),
                             IdEspecieFk = 2,
                             IdPropietarioFk = 2,
                             IdRazaFk = 2,
@@ -307,7 +307,7 @@ namespace Persistencia.Data.Migrations
                         new
                         {
                             Id = 6,
-                            FechaNacimiento = new DateTime(2023, 10, 17, 0, 31, 36, 154, DateTimeKind.Local).AddTicks(2536),
+                            FechaNacimiento = new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7481),
                             IdEspecieFk = 3,
                             IdPropietarioFk = 3,
                             IdRazaFk = 3,
@@ -316,7 +316,7 @@ namespace Persistencia.Data.Migrations
                         new
                         {
                             Id = 7,
-                            FechaNacimiento = new DateTime(2023, 10, 17, 0, 31, 36, 154, DateTimeKind.Local).AddTicks(2537),
+                            FechaNacimiento = new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7482),
                             IdEspecieFk = 4,
                             IdPropietarioFk = 3,
                             IdRazaFk = 7,
@@ -325,7 +325,7 @@ namespace Persistencia.Data.Migrations
                         new
                         {
                             Id = 8,
-                            FechaNacimiento = new DateTime(2023, 10, 17, 0, 31, 36, 154, DateTimeKind.Local).AddTicks(2538),
+                            FechaNacimiento = new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7483),
                             IdEspecieFk = 4,
                             IdPropietarioFk = 1,
                             IdRazaFk = 7,
@@ -471,7 +471,7 @@ namespace Persistencia.Data.Migrations
                             Id = 1,
                             Cantidad = 3,
                             CostoTotal = "33.3",
-                            FechaMovimiento = new DateTime(2023, 10, 17, 0, 31, 36, 155, DateTimeKind.Local).AddTicks(8748),
+                            FechaMovimiento = new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2915),
                             IdMedicamentoFk = 1,
                             IdTipoMovimientoFk = 1
                         },
@@ -480,7 +480,7 @@ namespace Persistencia.Data.Migrations
                             Id = 2,
                             Cantidad = 1,
                             CostoTotal = "65.3",
-                            FechaMovimiento = new DateTime(2023, 10, 17, 0, 31, 36, 155, DateTimeKind.Local).AddTicks(8752),
+                            FechaMovimiento = new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2920),
                             IdMedicamentoFk = 1,
                             IdTipoMovimientoFk = 2
                         },
@@ -489,7 +489,7 @@ namespace Persistencia.Data.Migrations
                             Id = 3,
                             Cantidad = 2,
                             CostoTotal = "7000",
-                            FechaMovimiento = new DateTime(2023, 10, 17, 0, 31, 36, 155, DateTimeKind.Local).AddTicks(8754),
+                            FechaMovimiento = new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2921),
                             IdMedicamentoFk = 2,
                             IdTipoMovimientoFk = 2
                         },
@@ -498,7 +498,7 @@ namespace Persistencia.Data.Migrations
                             Id = 4,
                             Cantidad = 3,
                             CostoTotal = "6546.8",
-                            FechaMovimiento = new DateTime(2023, 10, 17, 0, 31, 36, 155, DateTimeKind.Local).AddTicks(8755),
+                            FechaMovimiento = new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2922),
                             IdMedicamentoFk = 3,
                             IdTipoMovimientoFk = 1
                         },
@@ -507,7 +507,7 @@ namespace Persistencia.Data.Migrations
                             Id = 5,
                             Cantidad = 3,
                             CostoTotal = "2500",
-                            FechaMovimiento = new DateTime(2023, 10, 17, 0, 31, 36, 155, DateTimeKind.Local).AddTicks(8756),
+                            FechaMovimiento = new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2923),
                             IdMedicamentoFk = 2,
                             IdTipoMovimientoFk = 2
                         });
@@ -862,21 +862,21 @@ namespace Persistencia.Data.Migrations
                         {
                             Id = 1,
                             Dosis = "33.3 mlg",
-                            FechaAdministracion = new DateTime(2023, 10, 17, 0, 31, 36, 158, DateTimeKind.Local).AddTicks(1436),
+                            FechaAdministracion = new DateTime(2023, 10, 17, 14, 11, 15, 568, DateTimeKind.Local).AddTicks(4972),
                             Observacion = "presenta contuciones"
                         },
                         new
                         {
                             Id = 2,
                             Dosis = "2 tabletas",
-                            FechaAdministracion = new DateTime(2023, 10, 17, 0, 31, 36, 158, DateTimeKind.Local).AddTicks(1441),
+                            FechaAdministracion = new DateTime(2023, 10, 17, 14, 11, 15, 568, DateTimeKind.Local).AddTicks(4977),
                             Observacion = "una cada 12 horas"
                         },
                         new
                         {
                             Id = 3,
                             Dosis = "123.9 mlg",
-                            FechaAdministracion = new DateTime(2023, 10, 17, 0, 31, 36, 158, DateTimeKind.Local).AddTicks(1442),
+                            FechaAdministracion = new DateTime(2023, 10, 17, 14, 11, 15, 568, DateTimeKind.Local).AddTicks(4978),
                             Observacion = "solo una inyeccion al dia"
                         });
                 });

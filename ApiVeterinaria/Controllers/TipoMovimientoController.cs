@@ -24,7 +24,7 @@ public class TipoMovimientoController : BaseApiController
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -37,7 +37,7 @@ public class TipoMovimientoController : BaseApiController
 
     [HttpGet]
     [MapToApiVersion("1.1")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -49,7 +49,7 @@ public class TipoMovimientoController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -60,7 +60,7 @@ public class TipoMovimientoController : BaseApiController
     }
 
     [HttpPost]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<TipoMovimiento>> Post(TipoMovimiento tipoMovimientoDto)
@@ -76,7 +76,7 @@ public class TipoMovimientoController : BaseApiController
     }
 
     [HttpPut]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -93,7 +93,7 @@ public class TipoMovimientoController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 

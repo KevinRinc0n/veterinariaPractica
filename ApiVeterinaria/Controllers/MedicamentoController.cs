@@ -25,7 +25,7 @@ public class MedicamentoController : BaseApiController
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -38,7 +38,7 @@ public class MedicamentoController : BaseApiController
 
     [HttpGet]
     [MapToApiVersion("1.1")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -50,7 +50,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -61,7 +61,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpPost]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Medicamento>> Post(Medicamento medicamentoDto)
@@ -77,7 +77,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpPut]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -94,7 +94,7 @@ public class MedicamentoController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 

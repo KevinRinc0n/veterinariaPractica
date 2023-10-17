@@ -28,7 +28,7 @@ public class MascotaController : BaseApiController
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -41,7 +41,7 @@ public class MascotaController : BaseApiController
 
     [HttpGet]
     [MapToApiVersion("1.1")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -53,7 +53,7 @@ public class MascotaController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -64,7 +64,7 @@ public class MascotaController : BaseApiController
     }
 
     [HttpPost]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Mascota>> Post(Mascota mascotaDto)
@@ -80,7 +80,7 @@ public class MascotaController : BaseApiController
     }
 
     [HttpPut]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -97,7 +97,7 @@ public class MascotaController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    // [Authorize]    
+    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
@@ -145,17 +145,10 @@ public class MascotaController : BaseApiController
     [HttpGet("goldenRetriever")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<Mascota>>> GetRetriever()
+    public async Task<ActionResult<IEnumerable<MascotaPropietarioDto>>> GetRetriever()
     {
-        var mascota = await unitofwork.Mascotas.mascotaGolden();
-
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            ReferenceHandler = ReferenceHandler.Preserve,
-            MaxDepth = 32 
-        };
-
-        return new JsonResult(mapper.Map<List<Mascota>>(mascota), options);
+        var mascotaVeterinario = await unitofwork.Mascotas.mascotaGolden();
+        return mapper.Map<List<MascotaPropietarioDto>>(mascotaVeterinario);
     }
 
     private ActionResult Notfound()

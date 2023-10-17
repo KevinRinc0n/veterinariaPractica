@@ -47,5 +47,8 @@ public class MappingProfiles : Profile
 
         CreateMap<Laboratorio, LaboratorioDeterMedicDto>().ReverseMap();
 
+        CreateMap<Propietario, PropietarioMascotaDto>().ReverseMap();
+
+        CreateMap<Mascota, MascotaPropietarioDto>().ReverseMap();
     }
 }
