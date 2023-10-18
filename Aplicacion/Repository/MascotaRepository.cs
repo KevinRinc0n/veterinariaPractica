@@ -17,7 +17,7 @@ public class MascotaRepository : GenericRepository<Mascota>, IMascota
     public async Task<IEnumerable<Mascota>> ObtenerMascotasFelinas()
     {
         var felinos = await _context.Mascotas
-                    .Where(m => m.Raza.Especie.Nombre == "Felino")
+                    .Where(m => m.Especie.Nombre == "Felino")
                     .ToListAsync();
 
         return felinos;
