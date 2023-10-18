@@ -10,6 +10,7 @@ namespace ApiVeterinaria.Controllers;
 
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
+[Authorize (Roles= "Administrador")]    
 
 public class TipoMovimientoController : BaseApiController
 {
@@ -24,7 +25,6 @@ public class TipoMovimientoController : BaseApiController
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -36,8 +36,7 @@ public class TipoMovimientoController : BaseApiController
     }
 
     [HttpGet]
-    [MapToApiVersion("1.1")]
-    [Authorize (Roles= "Administrador")]    
+    [MapToApiVersion("1.1")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -48,8 +47,7 @@ public class TipoMovimientoController : BaseApiController
         return new Pager<TipoMovimiento>(listaTiposMovimientos, tipoMovimiento.totalRegistros,tipoMovimientoParams.PageIndex,tipoMovimientoParams.PageSize,tipoMovimientoParams.Search);
     }
 
-    [HttpGet("{id}")]
-    [Authorize (Roles= "Administrador")]    
+    [HttpGet("{id}")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -59,8 +57,7 @@ public class TipoMovimientoController : BaseApiController
         return mapper.Map<TipoMovimiento>(tipoMovimiento);
     }
 
-    [HttpPost]
-    [Authorize (Roles= "Administrador")]    
+    [HttpPost]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<TipoMovimiento>> Post(TipoMovimiento tipoMovimientoDto)
@@ -75,8 +72,7 @@ public class TipoMovimientoController : BaseApiController
         return CreatedAtAction(nameof(Post), new { id = tipoMovimientoDto.Id }, tipoMovimientoDto);
     }
 
-    [HttpPut]
-    [Authorize (Roles= "Administrador")]    
+    [HttpPut]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -92,8 +88,7 @@ public class TipoMovimientoController : BaseApiController
         return tipoMovimientoDto;     
     }
 
-    [HttpDelete("{id}")]
-    [Authorize (Roles= "Administrador")]    
+    [HttpDelete("{id}")]    
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 

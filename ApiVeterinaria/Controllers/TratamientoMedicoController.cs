@@ -10,6 +10,7 @@ namespace ApiVeterinaria.Controllers;
 
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
+[Authorize (Roles= "Administrador")]   
 
 public class TratamientoMedicoController : BaseApiController
 {
@@ -23,8 +24,7 @@ public class TratamientoMedicoController : BaseApiController
     } 
 
     [HttpGet]
-    [MapToApiVersion("1.0")]
-    [Authorize (Roles= "Administrador")]    
+    [MapToApiVersion("1.0")]  
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -36,8 +36,7 @@ public class TratamientoMedicoController : BaseApiController
     }
 
     [HttpGet]
-    [MapToApiVersion("1.1")]
-    [Authorize (Roles= "Administrador")]    
+    [MapToApiVersion("1.1")]   
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -48,8 +47,7 @@ public class TratamientoMedicoController : BaseApiController
         return new Pager<TratamientoMedico>(listaTratamientosMedicos, tratamientoMedico.totalRegistros,tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize,tratamientoMedicoParams.Search);
     }
 
-    [HttpGet("{id}")]
-    [Authorize (Roles= "Administrador")]    
+    [HttpGet("{id}")]   
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -59,8 +57,7 @@ public class TratamientoMedicoController : BaseApiController
         return mapper.Map<TratamientoMedico>(tipoMovimiento);
     }
 
-    [HttpPost]
-    [Authorize (Roles= "Administrador")]    
+    [HttpPost]   
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<TratamientoMedico>> Post(TratamientoMedico tratamientoMedicoDto)
@@ -75,8 +72,7 @@ public class TratamientoMedicoController : BaseApiController
         return CreatedAtAction(nameof(Post), new { id = tratamientoMedicoDto.Id }, tratamientoMedicoDto);
     }
 
-    [HttpPut]
-    [Authorize (Roles= "Administrador")]    
+    [HttpPut]   
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -92,8 +88,7 @@ public class TratamientoMedicoController : BaseApiController
         return tratamientoMedicoDto;     
     }
 
-    [HttpDelete("{id}")]
-    [Authorize (Roles= "Administrador")]    
+    [HttpDelete("{id}")]   
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 

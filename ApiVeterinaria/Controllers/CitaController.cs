@@ -10,6 +10,7 @@ namespace ApiVeterinaria.Controllers;
 
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
+[Authorize (Roles= "Administrador")]    
 
 public class CitaController : BaseApiController
 {
@@ -24,7 +25,6 @@ public class CitaController : BaseApiController
 
     [HttpGet]
     [MapToApiVersion("1.0")]
-    [Authorize (Roles= "Administrador")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -36,8 +36,7 @@ public class CitaController : BaseApiController
     }
 
     [HttpGet]
-    [MapToApiVersion("1.1")]
-    [Authorize (Roles= "Administrador")]    
+    [MapToApiVersion("1.1")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -48,8 +47,7 @@ public class CitaController : BaseApiController
         return new Pager<Cita>(listaCitas, cita.totalRegistros,citaParams.PageIndex,citaParams.PageSize,citaParams.Search);
     }
 
-    [HttpGet("{id}")]
-    [Authorize (Roles= "Administrador")]    
+    [HttpGet("{id}")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -59,8 +57,7 @@ public class CitaController : BaseApiController
         return mapper.Map<Cita>(citas);
     }
 
-    [HttpPost]
-    [Authorize (Roles= "Administrador")]    
+    [HttpPost]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Cita>> Post(Cita citaDto)
@@ -75,8 +72,7 @@ public class CitaController : BaseApiController
         return CreatedAtAction(nameof(Post), new { id = citaDto.Id }, citaDto);
     }
 
-    [HttpPut]
-    [Authorize (Roles= "Administrador")]    
+    [HttpPut]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -92,8 +88,7 @@ public class CitaController : BaseApiController
         return citaDto;     
     }
 
-    [HttpDelete("{id}")]
-    [Authorize (Roles= "Administrador")]    
+    [HttpDelete("{id}")]    
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
 
