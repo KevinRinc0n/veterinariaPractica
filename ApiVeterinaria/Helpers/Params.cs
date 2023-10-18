@@ -2,7 +2,7 @@ namespace ApiFarmacia.Helpers;
 
 public class Params
 {
-    private int _pageSize = 10;
+    private int _pageSize = 1;
     private const int MaxPageSize = 50;
     private int _pageIndex = 1;
     private string _search;

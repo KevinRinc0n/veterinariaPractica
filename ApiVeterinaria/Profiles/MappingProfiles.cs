@@ -50,5 +50,7 @@ public class MappingProfiles : Profile
         CreateMap<Propietario, PropietarioMascotaDto>().ReverseMap();
 
         CreateMap<Mascota, MascotaPropietarioDto>().ReverseMap();
+
+        CreateMap<Especie, EspecieMascotaDto>().ReverseMap();
     }
 }

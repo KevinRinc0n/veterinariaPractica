@@ -14,29 +14,12 @@ public class EspecieRepository : GenericRepository<Especie>, IEspecie
         _context = context;
     }
 
-    public async Task<IEnumerable<object>> mascotaXEspecie()
+    public async Task<IEnumerable<Especie>> mascotaXEspecie()
     {
-        var resultado = await _context.Especies
-        .Include(e => e.Razas)
-        .ThenInclude(r => r.Mascotas)
-        .Select(especie => new
-        {
-            EspecieId = especie.Id,
-            NombreEspecie = especie.Nombre,
-            Razas = especie.Razas.Select(raza => new
-            {
-                RazaId = raza.Id,
-                NombreRaza = raza.Nombre,
-                Mascotas = raza.Mascotas.Select(mascota => new
-                {
-                    IdMascota = mascota.Id,
-                    NombreMascota = mascota.Nombre,
-                    FechaNacimiento = mascota.FechaNacimiento
-                }).ToList()
-            }).ToList()
-        })
-        .ToListAsync();
+        var mascotaXEspe = await _context.Especies
+            .Include(m => m.Mascotas) 
+            .ToListAsync();
 
-        return resultado;
+        return mascotaXEspe;
     }
 }

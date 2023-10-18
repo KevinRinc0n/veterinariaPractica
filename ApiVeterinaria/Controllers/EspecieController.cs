@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiVeterinaria.Helpers;
 using ApiFarmacia.Helpers;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -114,10 +115,10 @@ public class EspecieController : BaseApiController
     [HttpGet("mascotaXEspecie")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<object>>> GetMacotaPorEspecie()
+    public async Task<ActionResult<IEnumerable<EspecieMascotaDto>>> GetMacotaPorEspecie()
     {
-        var mascotaXEspec = await unitofwork.Especies.mascotaXEspecie();
-        return Ok(mascotaXEspec);
+        var mascotaPorEspeci = await unitofwork.Especies.mascotaXEspecie();
+        return mapper.Map<List<EspecieMascotaDto>>(mascotaPorEspeci);
     }
 
     private ActionResult Notfound()
