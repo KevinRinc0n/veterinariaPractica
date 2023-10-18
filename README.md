@@ -62,15 +62,15 @@ Asi sera la respuesta:
 
 Usaremos este endpoind:  
 
-![5000 peticion](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/3fe6e137-df17-41fd-90b8-86480e17f128)
+![50000](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/5dfc8e63-e459-48ee-b755-47ccb46b6390)
 
 El metodo es de esta manera:
 
-![5000](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/a1ec338a-6d5f-4305-bfd0-45f16b3564a2)
+![50000 metodo](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/1a28ca05-3809-4c84-8d47-3091c25024f7)
 
 Asi sera la respuesta:
 
-![5000 respuesta](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/dd5b760e-c0f8-4799-871c-21dfd76a764e)
+![50000 respuesta](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/a694fe89-d482-4837-a936-9dd63cf59274)
 
 - Listar las mascotas que fueron atendidas por motivo de vacunacion en el primer trimestre del 2023.
 
