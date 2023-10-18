@@ -112,12 +112,12 @@ public class MedicamentoController : BaseApiController
         return NoContent();
     }
 
-    [HttpGet("mayor5000")]
+    [HttpGet("mayor50000")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<Medicamento5000Dto>>> GetCaro()
     {
-        var medicamento = await unitofwork.Medicamentos.medicamentos5000();
+        var medicamento = await unitofwork.Medicamentos.medicamentos50000();
         return mapper.Map<List<Medicamento5000Dto>>(medicamento);
     }
 

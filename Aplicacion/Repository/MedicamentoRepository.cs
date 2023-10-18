@@ -14,10 +14,10 @@ public class MedicamentoRepository : GenericRepository<Medicamento>, IMedicament
         _context = context;
     }
 
-    public async Task<IEnumerable<Medicamento>> medicamentos5000()
+    public async Task<IEnumerable<Medicamento>> medicamentos50000()
     {
         var medicamentoCaros = await _context.Medicamentos
-        .Where(m => m.Precio > 5000).ToListAsync();
+        .Where(m => m.Precio > 50000).ToListAsync();
 
         return medicamentoCaros;
     }

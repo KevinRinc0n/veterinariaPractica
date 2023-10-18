@@ -57,7 +57,10 @@ public class MedicamentoConfiguration : IEntityTypeConfiguration<Medicamento>
             new Medicamento { Id = 6, Nombre = "Diclofenaco", Stock = 14, Precio = 6000, IdLaboratorioFk = 2},
             new Medicamento { Id = 7, Nombre = "Naproxeno", Stock = 31, Precio = 7000, IdLaboratorioFk = 2},
             new Medicamento { Id = 8, Nombre = "Loratadina ", Stock = 21, Precio = 5001, IdLaboratorioFk = 2},
-            new Medicamento { Id = 9, Nombre = "Dolex", Stock = 4, Precio = 23.12, IdLaboratorioFk = 2}
+            new Medicamento { Id = 9, Nombre = "Dolex", Stock = 4, Precio = 23.12, IdLaboratorioFk = 2},
+            new Medicamento { Id = 10, Nombre = "Ramiprol", Stock = 97, Precio = 51000, IdLaboratorioFk = 2},
+            new Medicamento { Id = 11, Nombre = "Aspirina", Stock = 1, Precio = 63000, IdLaboratorioFk = 2},
+            new Medicamento { Id = 12, Nombre = "Lexotiroxina", Stock = 45, Precio = 87000, IdLaboratorioFk = 1}
         ); 
     }
 }

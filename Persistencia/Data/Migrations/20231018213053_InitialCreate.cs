@@ -559,9 +559,9 @@ namespace Persistencia.Data.Migrations
                 columns: new[] { "Id", "Dosis", "FechaAdministracion", "Observacion" },
                 values: new object[,]
                 {
-                    { 1, "33.3 mlg", new DateTime(2023, 10, 17, 14, 11, 15, 568, DateTimeKind.Local).AddTicks(4972), "presenta contuciones" },
-                    { 2, "2 tabletas", new DateTime(2023, 10, 17, 14, 11, 15, 568, DateTimeKind.Local).AddTicks(4977), "una cada 12 horas" },
-                    { 3, "123.9 mlg", new DateTime(2023, 10, 17, 14, 11, 15, 568, DateTimeKind.Local).AddTicks(4978), "solo una inyeccion al dia" }
+                    { 1, "33.3 mlg", new DateTime(2023, 10, 18, 16, 30, 53, 662, DateTimeKind.Local).AddTicks(6339), "presenta contuciones" },
+                    { 2, "2 tabletas", new DateTime(2023, 10, 18, 16, 30, 53, 662, DateTimeKind.Local).AddTicks(6348), "una cada 12 horas" },
+                    { 3, "123.9 mlg", new DateTime(2023, 10, 18, 16, 30, 53, 662, DateTimeKind.Local).AddTicks(6349), "solo una inyeccion al dia" }
                 });
 
             migrationBuilder.InsertData(
@@ -598,7 +598,10 @@ namespace Persistencia.Data.Migrations
                     { 6, 2, "Diclofenaco", 6000.0, 14 },
                     { 7, 2, "Naproxeno", 7000.0, 31 },
                     { 8, 2, "Loratadina ", 5001.0, 21 },
-                    { 9, 2, "Dolex", 23.120000000000001, 4 }
+                    { 9, 2, "Dolex", 23.120000000000001, 4 },
+                    { 10, 2, "Ramiprol", 51000.0, 97 },
+                    { 11, 2, "Aspirina", 63000.0, 1 },
+                    { 12, 1, "Lexotiroxina", 87000.0, 45 }
                 });
 
             migrationBuilder.InsertData(
@@ -620,14 +623,14 @@ namespace Persistencia.Data.Migrations
                 columns: new[] { "Id", "FechaNacimiento", "IdEspecieFk", "IdPropietarioFk", "IdRazaFk", "Nombre" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7467), 1, 1, 1, "michi" },
-                    { 2, new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7476), 1, 1, 1, "gato" },
-                    { 3, new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7478), 2, 3, 1, "firulais" },
-                    { 4, new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7479), 1, 1, 1, "gato con botas" },
-                    { 5, new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7480), 2, 2, 2, "tamara" },
-                    { 6, new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7481), 3, 3, 3, "terry" },
-                    { 7, new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7482), 4, 3, 7, "max" },
-                    { 8, new DateTime(2023, 10, 17, 14, 11, 15, 564, DateTimeKind.Local).AddTicks(7483), 4, 1, 7, "rokcy" }
+                    { 1, new DateTime(2023, 10, 18, 16, 30, 53, 658, DateTimeKind.Local).AddTicks(7518), 1, 1, 1, "michi" },
+                    { 2, new DateTime(2023, 10, 18, 16, 30, 53, 658, DateTimeKind.Local).AddTicks(7523), 1, 1, 1, "gato" },
+                    { 3, new DateTime(2023, 10, 18, 16, 30, 53, 658, DateTimeKind.Local).AddTicks(7524), 2, 3, 1, "firulais" },
+                    { 4, new DateTime(2023, 10, 18, 16, 30, 53, 658, DateTimeKind.Local).AddTicks(7525), 1, 1, 1, "gato con botas" },
+                    { 5, new DateTime(2023, 10, 18, 16, 30, 53, 658, DateTimeKind.Local).AddTicks(7527), 2, 2, 2, "tamara" },
+                    { 6, new DateTime(2023, 10, 18, 16, 30, 53, 658, DateTimeKind.Local).AddTicks(7528), 3, 3, 3, "terry" },
+                    { 7, new DateTime(2023, 10, 18, 16, 30, 53, 658, DateTimeKind.Local).AddTicks(7529), 4, 3, 7, "max" },
+                    { 8, new DateTime(2023, 10, 18, 16, 30, 53, 658, DateTimeKind.Local).AddTicks(7530), 4, 1, 7, "rokcy" }
                 });
 
             migrationBuilder.InsertData(
@@ -635,11 +638,11 @@ namespace Persistencia.Data.Migrations
                 columns: new[] { "Id", "Cantidad", "CostoTotal", "FechaMovimiento", "IdMedicamentoFk", "IdTipoMovimientoFk" },
                 values: new object[,]
                 {
-                    { 1, 3, "33.3", new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2915), 1, 1 },
-                    { 2, 1, "65.3", new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2920), 1, 2 },
-                    { 3, 2, "7000", new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2921), 2, 2 },
-                    { 4, 3, "6546.8", new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2922), 3, 1 },
-                    { 5, 3, "2500", new DateTime(2023, 10, 17, 14, 11, 15, 566, DateTimeKind.Local).AddTicks(2923), 2, 2 }
+                    { 1, 3, "33.3", new DateTime(2023, 10, 18, 16, 30, 53, 660, DateTimeKind.Local).AddTicks(4675), 1, 1 },
+                    { 2, 1, "65.3", new DateTime(2023, 10, 18, 16, 30, 53, 660, DateTimeKind.Local).AddTicks(4681), 1, 2 },
+                    { 3, 2, "7000", new DateTime(2023, 10, 18, 16, 30, 53, 660, DateTimeKind.Local).AddTicks(4683), 2, 2 },
+                    { 4, 3, "6546.8", new DateTime(2023, 10, 18, 16, 30, 53, 660, DateTimeKind.Local).AddTicks(4684), 3, 1 },
+                    { 5, 3, "2500", new DateTime(2023, 10, 18, 16, 30, 53, 660, DateTimeKind.Local).AddTicks(4685), 2, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -657,10 +660,10 @@ namespace Persistencia.Data.Migrations
                 columns: new[] { "Id", "FechaCita", "HoraCita", "IdMascotaFk", "IdTratamientoFk", "IdVeterinarioFk", "Motivo" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(510755625129), 1, 3, 4, "Vacunacion" },
-                    { 2, new DateTime(2023, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(510755625148), 4, 1, 5, "Vacunacion" },
-                    { 3, new DateTime(2023, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(510755625150), 3, 2, 1, "Revision general" },
-                    { 4, new DateTime(2023, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(510755625152), 2, 3, 4, "Vacunacion" }
+                    { 1, new DateTime(2023, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(594536566759), 1, 3, 4, "Vacunacion" },
+                    { 2, new DateTime(2023, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(594536566775), 4, 1, 5, "Vacunacion" },
+                    { 3, new DateTime(2023, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(594536566776), 3, 2, 1, "Revision general" },
+                    { 4, new DateTime(2023, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(594536566778), 2, 3, 4, "Vacunacion" }
                 });
 
             migrationBuilder.CreateIndex(
