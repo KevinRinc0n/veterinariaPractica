@@ -38,11 +38,11 @@ Usaremos este endpoind:
 
 El metodo es de esta manera:
 
-![felino](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/ba39b87c-24e8-4619-9a22-85353a1d3036)
+![mascotafelino](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/9d368114-887d-4e0e-8927-d0a7d479d31b)
 
 Asi sera la respuesta:
 
-![felino respuesta](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/6bd4c050-56f5-44b7-bf9b-3d88f12aad70)
+![mascotafelino respuesta](https://github.com/KevinRinc0n/veterinariaPractica/assets/133520088/44aff10e-a9e9-4b88-b38a-f2285e03b7d0)
 
 - Listar los propietarios y sus mascotas.
 
