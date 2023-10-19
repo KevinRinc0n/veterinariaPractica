@@ -4,10 +4,7 @@ using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiVeterinaria.Helpers;
-using ApiFarmacia.Helpers;
 using ApiVeterinaria.Dtos;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using API.Dtos;
 
 namespace ApiVeterinaria.Controllers;
@@ -32,11 +29,10 @@ public class MascotaController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<Mascota>>> Get0([FromQuery]Params mascotaParams)
+    public async Task<ActionResult<IEnumerable<Mascota>>> Get()
     {
-        var mascota = await unitofwork.Mascotas.GetAllAsync(mascotaParams.PageIndex,mascotaParams.PageSize, mascotaParams.Search);
-        var listaMascotas = mapper.Map<List<Mascota>>(mascota.registros);
-        return new Pager<Mascota>(listaMascotas, mascota.totalRegistros,mascotaParams.PageIndex,mascotaParams.PageSize,mascotaParams.Search);
+        var mascota = await unitofwork.Mascotas.GetAllAsync();
+        return mapper.Map<List<Mascota>>(mascota);
     }
 
     [HttpGet]

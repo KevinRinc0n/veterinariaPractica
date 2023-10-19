@@ -3,7 +3,6 @@ using AutoMapper;
 using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using ApiFarmacia.Helpers;
 using ApiVeterinaria.Helpers;
 
 namespace ApiVeterinaria.Controllers;
@@ -24,15 +23,14 @@ public class TratamientoMedicoController : BaseApiController
     } 
 
     [HttpGet]
-    [MapToApiVersion("1.0")]  
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<TratamientoMedico>>> Get0([FromQuery]Params tratamientoMedicoParams)
+    public async Task<ActionResult<IEnumerable<TratamientoMedico>>> Get()
     {
-        var tratamientoMedico = await unitofwork.TratamientosMedicos.GetAllAsync(tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize, tratamientoMedicoParams.Search);
-        var listaTratamientosMedicos = mapper.Map<List<TratamientoMedico>>(tratamientoMedico.registros);
-        return new Pager<TratamientoMedico>(listaTratamientosMedicos, tratamientoMedico.totalRegistros,tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize,tratamientoMedicoParams.Search);
+        var tratamientoMedico = await unitofwork.TratamientosMedicos.GetAllAsync();
+        return mapper.Map<List<TratamientoMedico>>(tratamientoMedico);
     }
 
     [HttpGet]

@@ -1,11 +1,6 @@
-using Dominio.Entities;
-using AutoMapper;
-using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using ApiVeterinaria.Dtos;
 using ApiVeterinaria.Services;
-using ApiFarmacia.Helpers;
-using ApiVeterinaria.Helpers;
 
 namespace ApiVeterinaria.Controllers;
 
