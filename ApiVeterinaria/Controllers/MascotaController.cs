@@ -29,10 +29,10 @@ public class MascotaController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<Mascota>>> Get()
+    public async Task<ActionResult<IEnumerable<MascotaGetDto>>> Get()
     {
         var mascota = await unitofwork.Mascotas.GetAllAsync();
-        return mapper.Map<List<Mascota>>(mascota);
+        return mapper.Map<List<MascotaGetDto>>(mascota);
     }
 
     [HttpGet]
@@ -41,11 +41,11 @@ public class MascotaController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<Mascota>>> Get([FromQuery]Params mascotaParams)
+    public async Task<ActionResult<Pager<MascotaGetDto>>> Get([FromQuery]Params mascotaParams)
     {
         var mascota = await unitofwork.Mascotas.GetAllAsync(mascotaParams.PageIndex,mascotaParams.PageSize, mascotaParams.Search);
-        var listaMascotas = mapper.Map<List<Mascota>>(mascota.registros);
-        return new Pager<Mascota>(listaMascotas, mascota.totalRegistros,mascotaParams.PageIndex,mascotaParams.PageSize,mascotaParams.Search);
+        var listaMascotas = mapper.Map<List<MascotaGetDto>>(mascota.registros);
+        return new Pager<MascotaGetDto>(listaMascotas, mascota.totalRegistros,mascotaParams.PageIndex,mascotaParams.PageSize,mascotaParams.Search);
     }
 
     [HttpGet("{id}")]

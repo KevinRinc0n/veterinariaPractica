@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Persistencia\\Persistencia.csproj": {}
+    "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Persistencia\\Persistencia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj": {
+    "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\obj\\",
+        "projectPath": "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj",
+        "packagesPath": "C:\\Users\\APT01-48\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\APT01-48\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -71,17 +71,17 @@
         }
       }
     },
-    "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Persistencia\\Persistencia.csproj": {
+    "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Persistencia\\Persistencia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Persistencia\\Persistencia.csproj",
+        "projectUniqueName": "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Persistencia\\Persistencia.csproj",
         "projectName": "Persistencia",
-        "projectPath": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Persistencia\\Persistencia.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Persistencia\\obj\\",
+        "projectPath": "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Persistencia\\Persistencia.csproj",
+        "packagesPath": "C:\\Users\\APT01-48\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Persistencia\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\APT01-48\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -93,8 +93,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj": {
-                "projectPath": "C:\\Users\\kevin\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj"
+              "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj": {
+                "projectPath": "C:\\Users\\APT01-48\\Desktop\\veterinariaPractica\\Dominio\\Dominio.csproj"
               }
             }
           }

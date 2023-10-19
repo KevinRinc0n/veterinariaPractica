@@ -52,5 +52,29 @@ public class MappingProfiles : Profile
         CreateMap<Mascota, MascotaPropietarioDto>().ReverseMap();
 
         CreateMap<Especie, EspecieMascotaDto>().ReverseMap();
+
+        CreateMap<Cita, CitaGetDto>().ReverseMap();
+
+        CreateMap<Cliente, ClienteGetDto>().ReverseMap();
+
+        CreateMap<Laboratorio, LaboratorioGetDto>().ReverseMap();
+
+        CreateMap<Mascota, MascotaGetDto>().ReverseMap();
+
+        CreateMap<Medicamento, MedicamentoGetDto>().ReverseMap();
+
+        CreateMap<MovimientoMedicamento, MovimientoMedicamentoGetDto>().ReverseMap();
+
+        CreateMap<MovimientoProducto, MovimientoProductoGetDto>().ReverseMap();
+
+        CreateMap<Propietario, PropietarioGetDto>().ReverseMap();
+
+        CreateMap<Raza, RazaGetDto>().ReverseMap();
+
+        CreateMap<TipoMovimiento, TipoMovimientoGetDto>().ReverseMap();
+
+        CreateMap<TratamientoMedico, TratamientoMedicoGetDto>().ReverseMap();
+
+        CreateMap<Veterinario, VeterinarioGetDto>().ReverseMap();
     }
 }

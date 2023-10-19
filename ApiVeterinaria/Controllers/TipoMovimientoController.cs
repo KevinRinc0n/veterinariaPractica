@@ -4,6 +4,7 @@ using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiVeterinaria.Helpers;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -27,10 +28,10 @@ public class TipoMovimientoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<TipoMovimiento>>> Get()
+    public async Task<ActionResult<IEnumerable<TipoMovimientoGetDto>>> Get()
     {
         var tipoMovimiento = await unitofwork.TiposMovimientos.GetAllAsync();
-        return mapper.Map<List<TipoMovimiento>>(tipoMovimiento);
+        return mapper.Map<List<TipoMovimientoGetDto>>(tipoMovimiento);
     }
 
     [HttpGet]
@@ -38,11 +39,11 @@ public class TipoMovimientoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<TipoMovimiento>>> Get([FromQuery]Params tipoMovimientoParams)
+    public async Task<ActionResult<Pager<TipoMovimientoGetDto>>> Get([FromQuery]Params tipoMovimientoParams)
     {
         var tipoMovimiento = await unitofwork.TiposMovimientos.GetAllAsync(tipoMovimientoParams.PageIndex,tipoMovimientoParams.PageSize, tipoMovimientoParams.Search);
-        var listaTiposMovimientos = mapper.Map<List<TipoMovimiento>>(tipoMovimiento.registros);
-        return new Pager<TipoMovimiento>(listaTiposMovimientos, tipoMovimiento.totalRegistros,tipoMovimientoParams.PageIndex,tipoMovimientoParams.PageSize,tipoMovimientoParams.Search);
+        var listaTiposMovimientos = mapper.Map<List<TipoMovimientoGetDto>>(tipoMovimiento.registros);
+        return new Pager<TipoMovimientoGetDto>(listaTiposMovimientos, tipoMovimiento.totalRegistros,tipoMovimientoParams.PageIndex,tipoMovimientoParams.PageSize,tipoMovimientoParams.Search);
     }
 
     [HttpGet("{id}")]    

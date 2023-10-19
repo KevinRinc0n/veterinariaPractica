@@ -1,0 +1,11 @@
+namespace ApiVeterinaria.Dtos;
+
+public class MovimientoMedicamentoGetDto
+{
+    public int Id { get; set; }
+    public int IdTipoMovimientoFk { get; set; }
+    public int IdMedicamentoFk { get; set; }
+    public int Cantidad { get; set; }
+    public string CostoTotal { get; set; }
+    public DateTime FechaMovimiento { get; set; }
+}

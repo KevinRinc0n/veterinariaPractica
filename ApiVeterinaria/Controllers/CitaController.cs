@@ -4,6 +4,7 @@ using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiVeterinaria.Helpers;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -27,10 +28,10 @@ public class CitaController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<Cita>>> Get()
+    public async Task<ActionResult<IEnumerable<CitaGetDto>>> Get()
     {
         var cita = await unitofwork.Citas.GetAllAsync();
-        return mapper.Map<List<Cita>>(cita);
+        return mapper.Map<List<CitaGetDto>>(cita);
     }
 
     [HttpGet]
@@ -38,11 +39,11 @@ public class CitaController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<Cita>>> Get([FromQuery]Params citaParams)
+    public async Task<ActionResult<Pager<CitaGetDto>>> Get([FromQuery]Params citaParams)
     {
         var cita = await unitofwork.Citas.GetAllAsync(citaParams.PageIndex,citaParams.PageSize, citaParams.Search);
-        var listaCitas = mapper.Map<List<Cita>>(cita.registros);
-        return new Pager<Cita>(listaCitas, cita.totalRegistros,citaParams.PageIndex,citaParams.PageSize,citaParams.Search);
+        var listaCitas = mapper.Map<List<CitaGetDto>>(cita.registros);
+        return new Pager<CitaGetDto>(listaCitas, cita.totalRegistros,citaParams.PageIndex,citaParams.PageSize,citaParams.Search);
     }
 
     [HttpGet("{id}")]    

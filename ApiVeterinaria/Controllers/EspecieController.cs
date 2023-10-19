@@ -28,10 +28,10 @@ public class EspecieController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<Especie>>> Get()
+    public async Task<ActionResult<IEnumerable<EspecieDto>>> Get()
     {
         var especie = await unitofwork.Especies.GetAllAsync();
-        return mapper.Map<List<Especie>>(especie);
+        return mapper.Map<List<EspecieDto>>(especie);
     }
 
     [HttpGet]
@@ -40,11 +40,11 @@ public class EspecieController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<Especie>>> Get([FromQuery]Params especieParams)
+    public async Task<ActionResult<Pager<EspecieDto>>> Get([FromQuery]Params especieParams)
     {
         var especie = await unitofwork.Especies.GetAllAsync(especieParams.PageIndex,especieParams.PageSize, especieParams.Search);
-        var listaEspecies = mapper.Map<List<Especie>>(especie.registros);
-        return new Pager<Especie>(listaEspecies, especie.totalRegistros,especieParams.PageIndex,especieParams.PageSize,especieParams.Search);
+        var listaEspecies = mapper.Map<List<EspecieDto>>(especie.registros);
+        return new Pager<EspecieDto>(listaEspecies, especie.totalRegistros,especieParams.PageIndex,especieParams.PageSize,especieParams.Search);
     }
 
     [HttpGet("{id}")]

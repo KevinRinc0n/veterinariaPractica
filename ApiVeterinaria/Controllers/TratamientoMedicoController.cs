@@ -4,6 +4,7 @@ using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiVeterinaria.Helpers;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -27,10 +28,10 @@ public class TratamientoMedicoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<TratamientoMedico>>> Get()
+    public async Task<ActionResult<IEnumerable<TratamientoMedicoGetDto>>> Get()
     {
         var tratamientoMedico = await unitofwork.TratamientosMedicos.GetAllAsync();
-        return mapper.Map<List<TratamientoMedico>>(tratamientoMedico);
+        return mapper.Map<List<TratamientoMedicoGetDto>>(tratamientoMedico);
     }
 
     [HttpGet]
@@ -38,11 +39,11 @@ public class TratamientoMedicoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<TratamientoMedico>>> Get([FromQuery]Params tratamientoMedicoParams)
+    public async Task<ActionResult<Pager<TratamientoMedicoGetDto>>> Get([FromQuery]Params tratamientoMedicoParams)
     {
         var tratamientoMedico = await unitofwork.TratamientosMedicos.GetAllAsync(tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize, tratamientoMedicoParams.Search);
-        var listaTratamientosMedicos = mapper.Map<List<TratamientoMedico>>(tratamientoMedico.registros);
-        return new Pager<TratamientoMedico>(listaTratamientosMedicos, tratamientoMedico.totalRegistros,tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize,tratamientoMedicoParams.Search);
+        var listaTratamientosMedicos = mapper.Map<List<TratamientoMedicoGetDto>>(tratamientoMedico.registros);
+        return new Pager<TratamientoMedicoGetDto>(listaTratamientosMedicos, tratamientoMedico.totalRegistros,tratamientoMedicoParams.PageIndex,tratamientoMedicoParams.PageSize,tratamientoMedicoParams.Search);
     }
 
     [HttpGet("{id}")]   

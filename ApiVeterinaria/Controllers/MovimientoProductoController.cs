@@ -4,6 +4,7 @@ using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiVeterinaria.Helpers;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -27,10 +28,10 @@ public class MovimientoProductoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<MovimientoProducto>>> Get()
+    public async Task<ActionResult<IEnumerable<MovimientoProductoGetDto>>> Get()
     {
         var movimientoProducto = await unitofwork.MovimientosProductos.GetAllAsync();
-        return mapper.Map<List<MovimientoProducto>>(movimientoProducto);
+        return mapper.Map<List<MovimientoProductoGetDto>>(movimientoProducto);
     }
 
     [HttpGet]
@@ -38,11 +39,11 @@ public class MovimientoProductoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<MovimientoProducto>>> Get([FromQuery]Params movimientoProductoParams)
+    public async Task<ActionResult<Pager<MovimientoProductoGetDto>>> Get([FromQuery]Params movimientoProductoParams)
     {
         var movimientoProducto = await unitofwork.MovimientosProductos.GetAllAsync(movimientoProductoParams.PageIndex,movimientoProductoParams.PageSize, movimientoProductoParams.Search);
-        var listaMovimientosProductos = mapper.Map<List<MovimientoProducto>>(movimientoProducto.registros);
-        return new Pager<MovimientoProducto>(listaMovimientosProductos, movimientoProducto.totalRegistros,movimientoProductoParams.PageIndex,movimientoProductoParams.PageSize,movimientoProductoParams.Search);
+        var listaMovimientosProductos = mapper.Map<List<MovimientoProductoGetDto>>(movimientoProducto.registros);
+        return new Pager<MovimientoProductoGetDto>(listaMovimientosProductos, movimientoProducto.totalRegistros,movimientoProductoParams.PageIndex,movimientoProductoParams.PageSize,movimientoProductoParams.Search);
     }
 
     [HttpGet("{id}")]    

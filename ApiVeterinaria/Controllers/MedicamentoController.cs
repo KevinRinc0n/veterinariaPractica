@@ -28,10 +28,10 @@ public class MedicamentoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<Medicamento>>> Get()
+    public async Task<ActionResult<IEnumerable<MedicamentoGetDto>>> Get()
     {
         var medicamento = await unitofwork.Medicamentos.GetAllAsync();
-        return mapper.Map<List<Medicamento>>(medicamento);
+        return mapper.Map<List<MedicamentoGetDto>>(medicamento);
     }
 
     [HttpGet]
@@ -40,11 +40,11 @@ public class MedicamentoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<Medicamento>>> Get([FromQuery]Params medicamentoParams)
+    public async Task<ActionResult<Pager<MedicamentoGetDto>>> Get([FromQuery]Params medicamentoParams)
     {
         var medicamento = await unitofwork.Medicamentos.GetAllAsync(medicamentoParams.PageIndex,medicamentoParams.PageSize, medicamentoParams.Search);
-        var listaMedicamentos = mapper.Map<List<Medicamento>>(medicamento.registros);
-        return new Pager<Medicamento>(listaMedicamentos, medicamento.totalRegistros,medicamentoParams.PageIndex,medicamentoParams.PageSize,medicamentoParams.Search);
+        var listaMedicamentos = mapper.Map<List<MedicamentoGetDto>>(medicamento.registros);
+        return new Pager<MedicamentoGetDto>(listaMedicamentos, medicamento.totalRegistros,medicamentoParams.PageIndex,medicamentoParams.PageSize,medicamentoParams.Search);
     }
 
     [HttpGet("{id}")]

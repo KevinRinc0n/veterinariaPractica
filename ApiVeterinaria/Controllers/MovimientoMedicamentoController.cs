@@ -28,10 +28,10 @@ public class MovimientoMedicamentoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<MovimientoMedicamento>>> Get()
+    public async Task<ActionResult<IEnumerable<MovimientoMedicamentoGetDto>>> Get()
     {
         var movimientoMedicamento = await unitofwork.MovimientosMedicamentos.GetAllAsync();
-        return mapper.Map<List<MovimientoMedicamento>>(movimientoMedicamento);
+        return mapper.Map<List<MovimientoMedicamentoGetDto>>(movimientoMedicamento);
     }
 
     [HttpGet]
@@ -40,11 +40,11 @@ public class MovimientoMedicamentoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<MovimientoMedicamento>>> Get([FromQuery]Params movimientoMedicamentoParams)
+    public async Task<ActionResult<Pager<MovimientoMedicamentoGetDto>>> Get([FromQuery]Params movimientoMedicamentoParams)
     {
         var movimientoMedicamento = await unitofwork.MovimientosMedicamentos.GetAllAsync(movimientoMedicamentoParams.PageIndex,movimientoMedicamentoParams.PageSize, movimientoMedicamentoParams.Search);
-        var listaMovimientosMedicamentos = mapper.Map<List<MovimientoMedicamento>>(movimientoMedicamento.registros);
-        return new Pager<MovimientoMedicamento>(listaMovimientosMedicamentos, movimientoMedicamento.totalRegistros,movimientoMedicamentoParams.PageIndex,movimientoMedicamentoParams.PageSize,movimientoMedicamentoParams.Search);
+        var listaMovimientosMedicamentos = mapper.Map<List<MovimientoMedicamentoGetDto>>(movimientoMedicamento.registros);
+        return new Pager<MovimientoMedicamentoGetDto>(listaMovimientosMedicamentos, movimientoMedicamento.totalRegistros,movimientoMedicamentoParams.PageIndex,movimientoMedicamentoParams.PageSize,movimientoMedicamentoParams.Search);
     }
 
     [HttpGet("{id}")]

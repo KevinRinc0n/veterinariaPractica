@@ -28,10 +28,10 @@ public class PropietarioController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<Propietario>>> Get()
+    public async Task<ActionResult<IEnumerable<PropietarioGetDto>>> Get()
     {
         var propietario = await unitofwork.Propietarios.GetAllAsync();
-        return mapper.Map<List<Propietario>>(propietario);
+        return mapper.Map<List<PropietarioGetDto>>(propietario);
     }
 
     [HttpGet]
@@ -40,11 +40,11 @@ public class PropietarioController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<Propietario>>> Get([FromQuery]Params propietarioParams)
+    public async Task<ActionResult<Pager<PropietarioGetDto>>> Get([FromQuery]Params propietarioParams)
     {
         var propietario = await unitofwork.Propietarios.GetAllAsync(propietarioParams.PageIndex,propietarioParams.PageSize, propietarioParams.Search);
-        var listaPropietarios = mapper.Map<List<Propietario>>(propietario.registros);
-        return new Pager<Propietario>(listaPropietarios, propietario.totalRegistros,propietarioParams.PageIndex,propietarioParams.PageSize,propietarioParams.Search);
+        var listaPropietarios = mapper.Map<List<PropietarioGetDto>>(propietario.registros);
+        return new Pager<PropietarioGetDto>(listaPropietarios, propietario.totalRegistros,propietarioParams.PageIndex,propietarioParams.PageSize,propietarioParams.Search);
     }
 
     [HttpGet("{id}")]

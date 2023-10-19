@@ -4,6 +4,7 @@ using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using ApiVeterinaria.Helpers;
+using ApiVeterinaria.Dtos;
 
 namespace ApiVeterinaria.Controllers;
 
@@ -27,10 +28,10 @@ public class ClienteController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<IEnumerable<Cliente>>> Get()
+    public async Task<ActionResult<IEnumerable<ClienteGetDto>>> Get()
     {
         var cliente = await unitofwork.Clientes.GetAllAsync();
-        return mapper.Map<List<Cliente>>(cliente);
+        return mapper.Map<List<ClienteGetDto>>(cliente);
     }
 
     [HttpGet]
@@ -38,11 +39,11 @@ public class ClienteController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Pager<Cliente>>> Get([FromQuery]Params clienteParams)
+    public async Task<ActionResult<Pager<ClienteGetDto>>> Get([FromQuery]Params clienteParams)
     {
         var cliente = await unitofwork.Clientes.GetAllAsync(clienteParams.PageIndex,clienteParams.PageSize, clienteParams.Search);
-        var listaClientes = mapper.Map<List<Cliente>>(cliente.registros);
-        return new Pager<Cliente>(listaClientes, cliente.totalRegistros,clienteParams.PageIndex,clienteParams.PageSize,clienteParams.Search);
+        var listaClientes = mapper.Map<List<ClienteGetDto>>(cliente.registros);
+        return new Pager<ClienteGetDto>(listaClientes, cliente.totalRegistros,clienteParams.PageIndex,clienteParams.PageSize,clienteParams.Search);
     }
 
     [HttpGet("{id}")]       
